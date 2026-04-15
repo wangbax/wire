@@ -118,6 +118,21 @@ public final class JavaGeneratorTest {
   }
 
   @Test
+  public void customOkioPackage() throws Exception {
+    Schema schema =
+        new SchemaBuilder()
+            .add(
+                Path.get("message.proto"),
+                "" + "message Message {\n" + "  optional bytes payload = 1;\n" + "}\n")
+            .build();
+
+    assertThat(
+            new JavaGeneratorHelper(schema)
+                .generateJava("Message", null, "com.squareup.wire.shaded.okio"))
+        .contains("import com.squareup.wire.shaded.okio.ByteString;");
+  }
+
+  @Test
   public void nullLabelIsHandledDuringOptionGeneration() throws Exception {
     Schema schema =
         new SchemaBuilder()

@@ -166,6 +166,26 @@ class KotlinGeneratorTest {
     assertThat(code).contains("const val DEFAULT_R: Long = -2_147_483_647L")
   }
 
+  @Test fun customOkioPackage() {
+    val schema = buildSchema {
+      add(
+        "message.proto".toPath(),
+        """
+        |message Message {
+        |  optional bytes payload = 1;
+        |}
+        """.trimMargin(),
+      )
+    }
+
+    val code = KotlinWithProfilesGenerator(schema).generateKotlin(
+      "Message",
+      okioPackage = "com.squareup.wire.shaded.okio",
+    )
+
+    assertThat(code).contains("import com.squareup.wire.shaded.okio.ByteString")
+  }
+
   @Test fun nameAllocatorIsUsed() {
     val schema = buildSchema {
       add(

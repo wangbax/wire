@@ -90,6 +90,7 @@ import java.lang.annotation.Target;
 import java.net.ProtocolException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Base64;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedHashMap;
@@ -100,7 +101,6 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 import javax.annotation.Nullable;
-import okio.ByteString;
 
 /**
  * Generates Java source code that matches proto definitions.
@@ -110,7 +110,7 @@ import okio.ByteString;
  * java.lang.String}, or {@code com.squareup.protos.person.Person}).
  */
 public final class JavaGenerator {
-  static final ClassName BYTE_STRING = ClassName.get(ByteString.class);
+  public static final String DEFAULT_OKIO_PACKAGE = "okio";
   static final ClassName STRING = ClassName.get(String.class);
   static final ClassName LIST = ClassName.get(List.class);
   static final ClassName MESSAGE = ClassName.get(Message.class);
@@ -132,71 +132,11 @@ public final class JavaGenerator {
           });
 
   public static boolean builtInType(ProtoType protoType) {
-    return BUILT_IN_TYPES_MAP.containsKey(protoType);
+    return DEFAULT_BUILT_IN_TYPES_MAP.containsKey(protoType);
   }
 
-  private static final Map<ProtoType, TypeName> BUILT_IN_TYPES_MAP =
-      ImmutableMap.<ProtoType, TypeName>builder()
-          .put(ProtoType.BOOL, TypeName.BOOLEAN)
-          .put(ProtoType.BYTES, ClassName.get(ByteString.class))
-          .put(ProtoType.DOUBLE, TypeName.DOUBLE)
-          .put(ProtoType.FLOAT, TypeName.FLOAT)
-          .put(ProtoType.FIXED32, TypeName.INT)
-          .put(ProtoType.FIXED64, TypeName.LONG)
-          .put(ProtoType.INT32, TypeName.INT)
-          .put(ProtoType.INT64, TypeName.LONG)
-          .put(ProtoType.SFIXED32, TypeName.INT)
-          .put(ProtoType.SFIXED64, TypeName.LONG)
-          .put(ProtoType.SINT32, TypeName.INT)
-          .put(ProtoType.SINT64, TypeName.LONG)
-          .put(ProtoType.STRING, ClassName.get(String.class))
-          .put(ProtoType.UINT32, TypeName.INT)
-          .put(ProtoType.UINT64, TypeName.LONG)
-          .put(ProtoType.ANY, ClassName.get("com.squareup.wire", "AnyMessage"))
-          .put(ProtoType.DURATION, ClassName.get("java.time", "Duration"))
-          .put(ProtoType.TIMESTAMP, ClassName.get("java.time", "Instant"))
-          .put(ProtoType.EMPTY, ClassName.get("kotlin", "Unit"))
-          .put(
-              ProtoType.STRUCT_MAP,
-              ParameterizedTypeName.get(
-                  ClassName.get("java.util", "Map"),
-                  ClassName.get("java.lang", "String"),
-                  WildcardTypeName.subtypeOf(Object.class)))
-          .put(ProtoType.STRUCT_VALUE, ClassName.get("java.lang", "Object"))
-          .put(ProtoType.STRUCT_NULL, ClassName.get("java.lang", "Void"))
-          .put(
-              ProtoType.STRUCT_LIST,
-              ParameterizedTypeName.get(
-                  ClassName.get("java.util", "List"), WildcardTypeName.subtypeOf(Object.class)))
-          .put(ProtoType.DOUBLE_VALUE, TypeName.DOUBLE)
-          .put(ProtoType.FLOAT_VALUE, TypeName.FLOAT)
-          .put(ProtoType.INT64_VALUE, TypeName.LONG)
-          .put(ProtoType.UINT64_VALUE, TypeName.LONG)
-          .put(ProtoType.INT32_VALUE, TypeName.INT)
-          .put(ProtoType.UINT32_VALUE, TypeName.INT)
-          .put(ProtoType.BOOL_VALUE, TypeName.BOOLEAN)
-          .put(ProtoType.STRING_VALUE, ClassName.get(String.class))
-          .put(ProtoType.BYTES_VALUE, ClassName.get(ByteString.class))
-          .build();
-
-  private static final Map<ProtoType, CodeBlock> PROTOTYPE_TO_IDENTITY_VALUES =
-      ImmutableMap.<ProtoType, CodeBlock>builder()
-          .put(ProtoType.BOOL, CodeBlock.of("false"))
-          .put(ProtoType.STRING, CodeBlock.of("\"\""))
-          .put(ProtoType.BYTES, CodeBlock.of("$T.$L", ByteString.class, "EMPTY"))
-          .put(ProtoType.DOUBLE, CodeBlock.of("0.0"))
-          .put(ProtoType.FLOAT, CodeBlock.of("0f"))
-          .put(ProtoType.FIXED64, CodeBlock.of("0L"))
-          .put(ProtoType.INT64, CodeBlock.of("0L"))
-          .put(ProtoType.SFIXED64, CodeBlock.of("0L"))
-          .put(ProtoType.SINT64, CodeBlock.of("0L"))
-          .put(ProtoType.UINT64, CodeBlock.of("0L"))
-          .put(ProtoType.FIXED32, CodeBlock.of("0"))
-          .put(ProtoType.INT32, CodeBlock.of("0"))
-          .put(ProtoType.SFIXED32, CodeBlock.of("0"))
-          .put(ProtoType.SINT32, CodeBlock.of("0"))
-          .put(ProtoType.UINT32, CodeBlock.of("0"))
-          .build();
+  private static final Map<ProtoType, TypeName> DEFAULT_BUILT_IN_TYPES_MAP =
+      builtInTypesMap(DEFAULT_OKIO_PACKAGE);
 
   private static final String URL_CHARS = "[-!#$%&'()*+,./0-9:;=?@A-Z\\[\\]_a-z~]";
   private static final int MAX_PARAMS_IN_CONSTRUCTOR = 16;
@@ -271,6 +211,9 @@ public final class JavaGenerator {
   private final boolean emitDeclaredOptions;
   private final boolean emitAppliedOptions;
   private final boolean buildersOnly;
+  private final String okioPackage;
+  private final ClassName byteStringClass;
+  private final ImmutableMap<ProtoType, CodeBlock> prototypeToIdentityValues;
 
   private JavaGenerator(
       Schema schema,
@@ -282,7 +225,8 @@ public final class JavaGenerator {
       boolean emitCompact,
       boolean emitDeclaredOptions,
       boolean emitAppliedOptions,
-      boolean buildersOnly) {
+      boolean buildersOnly,
+      String okioPackage) {
     this.schema = schema;
     this.typeToJavaName = ImmutableMap.copyOf(typeToJavaName);
     this.memberToJavaName = ImmutableMap.copyOf(memberToJavaName);
@@ -293,6 +237,9 @@ public final class JavaGenerator {
     this.emitDeclaredOptions = emitDeclaredOptions;
     this.emitAppliedOptions = emitAppliedOptions;
     this.buildersOnly = buildersOnly;
+    this.okioPackage = okioPackage;
+    this.byteStringClass = byteStringClass(okioPackage);
+    this.prototypeToIdentityValues = ImmutableMap.copyOf(prototypeToIdentityValues(okioPackage));
   }
 
   public JavaGenerator withAndroid(boolean emitAndroid) {
@@ -306,7 +253,8 @@ public final class JavaGenerator {
         emitCompact,
         emitDeclaredOptions,
         emitAppliedOptions,
-        buildersOnly);
+        buildersOnly,
+        okioPackage);
   }
 
   public JavaGenerator withAndroidAnnotations(boolean emitAndroidAnnotations) {
@@ -320,7 +268,8 @@ public final class JavaGenerator {
         emitCompact,
         emitDeclaredOptions,
         emitAppliedOptions,
-        buildersOnly);
+        buildersOnly,
+        okioPackage);
   }
 
   public JavaGenerator withCompact(boolean emitCompact) {
@@ -334,7 +283,8 @@ public final class JavaGenerator {
         emitCompact,
         emitDeclaredOptions,
         emitAppliedOptions,
-        buildersOnly);
+        buildersOnly,
+        okioPackage);
   }
 
   public JavaGenerator withProfile(Profile profile) {
@@ -348,7 +298,8 @@ public final class JavaGenerator {
         emitCompact,
         emitDeclaredOptions,
         emitAppliedOptions,
-        buildersOnly);
+        buildersOnly,
+        okioPackage);
   }
 
   public JavaGenerator withOptions(boolean emitDeclaredOptions, boolean emitAppliedOptions) {
@@ -362,7 +313,8 @@ public final class JavaGenerator {
         emitCompact,
         emitDeclaredOptions,
         emitAppliedOptions,
-        buildersOnly);
+        buildersOnly,
+        okioPackage);
   }
 
   public JavaGenerator withBuildersOnly(boolean buildersOnly) {
@@ -376,10 +328,30 @@ public final class JavaGenerator {
         emitCompact,
         emitDeclaredOptions,
         emitAppliedOptions,
-        buildersOnly);
+        buildersOnly,
+        okioPackage);
+  }
+
+  public JavaGenerator withOkioPackage(String okioPackage) {
+    return new JavaGenerator(
+        schema,
+        replaceBuiltInTypes(typeToJavaName, okioPackage),
+        memberToJavaName,
+        profile,
+        emitAndroid,
+        emitAndroidAnnotations,
+        emitCompact,
+        emitDeclaredOptions,
+        emitAppliedOptions,
+        buildersOnly,
+        okioPackage);
   }
 
   public static JavaGenerator get(Schema schema) {
+    return get(schema, DEFAULT_OKIO_PACKAGE);
+  }
+
+  public static JavaGenerator get(Schema schema, String okioPackage) {
     Map<ProtoType, TypeName> nameToJavaName = new LinkedHashMap<>();
     Map<ProtoMember, TypeName> memberToJavaName = new LinkedHashMap<>();
 
@@ -396,7 +368,7 @@ public final class JavaGenerator {
           schema, protoFile, protoFile.getTypes(), protoFile.getExtendList(), memberToJavaName);
     }
 
-    nameToJavaName.putAll(BUILT_IN_TYPES_MAP);
+    nameToJavaName.putAll(builtInTypesMap(okioPackage));
 
     return new JavaGenerator(
         schema,
@@ -408,7 +380,85 @@ public final class JavaGenerator {
         false /* emitCompact */,
         false /* emitDeclaredOptions */,
         false /* emitAppliedOptions */,
-        false /* buildersOnly */);
+        false /* buildersOnly */,
+        okioPackage);
+  }
+
+  private static ClassName byteStringClass(String okioPackage) {
+    return ClassName.get(okioPackage, "ByteString");
+  }
+
+  private static Map<ProtoType, TypeName> builtInTypesMap(String okioPackage) {
+    ClassName byteStringClass = byteStringClass(okioPackage);
+    return ImmutableMap.<ProtoType, TypeName>builder()
+        .put(ProtoType.BOOL, TypeName.BOOLEAN)
+        .put(ProtoType.BYTES, byteStringClass)
+        .put(ProtoType.DOUBLE, TypeName.DOUBLE)
+        .put(ProtoType.FLOAT, TypeName.FLOAT)
+        .put(ProtoType.FIXED32, TypeName.INT)
+        .put(ProtoType.FIXED64, TypeName.LONG)
+        .put(ProtoType.INT32, TypeName.INT)
+        .put(ProtoType.INT64, TypeName.LONG)
+        .put(ProtoType.SFIXED32, TypeName.INT)
+        .put(ProtoType.SFIXED64, TypeName.LONG)
+        .put(ProtoType.SINT32, TypeName.INT)
+        .put(ProtoType.SINT64, TypeName.LONG)
+        .put(ProtoType.STRING, ClassName.get(String.class))
+        .put(ProtoType.UINT32, TypeName.INT)
+        .put(ProtoType.UINT64, TypeName.LONG)
+        .put(ProtoType.ANY, ClassName.get("com.squareup.wire", "AnyMessage"))
+        .put(ProtoType.DURATION, ClassName.get("java.time", "Duration"))
+        .put(ProtoType.TIMESTAMP, ClassName.get("java.time", "Instant"))
+        .put(ProtoType.EMPTY, ClassName.get("kotlin", "Unit"))
+        .put(
+            ProtoType.STRUCT_MAP,
+            ParameterizedTypeName.get(
+                ClassName.get("java.util", "Map"),
+                ClassName.get("java.lang", "String"),
+                WildcardTypeName.subtypeOf(Object.class)))
+        .put(ProtoType.STRUCT_VALUE, ClassName.get("java.lang", "Object"))
+        .put(ProtoType.STRUCT_NULL, ClassName.get("java.lang", "Void"))
+        .put(
+            ProtoType.STRUCT_LIST,
+            ParameterizedTypeName.get(
+                ClassName.get("java.util", "List"), WildcardTypeName.subtypeOf(Object.class)))
+        .put(ProtoType.DOUBLE_VALUE, TypeName.DOUBLE)
+        .put(ProtoType.FLOAT_VALUE, TypeName.FLOAT)
+        .put(ProtoType.INT64_VALUE, TypeName.LONG)
+        .put(ProtoType.UINT64_VALUE, TypeName.LONG)
+        .put(ProtoType.INT32_VALUE, TypeName.INT)
+        .put(ProtoType.UINT32_VALUE, TypeName.INT)
+        .put(ProtoType.BOOL_VALUE, TypeName.BOOLEAN)
+        .put(ProtoType.STRING_VALUE, ClassName.get(String.class))
+        .put(ProtoType.BYTES_VALUE, byteStringClass)
+        .build();
+  }
+
+  private static Map<ProtoType, CodeBlock> prototypeToIdentityValues(String okioPackage) {
+    return ImmutableMap.<ProtoType, CodeBlock>builder()
+        .put(ProtoType.BOOL, CodeBlock.of("false"))
+        .put(ProtoType.STRING, CodeBlock.of("\"\""))
+        .put(ProtoType.BYTES, CodeBlock.of("$T.$L", byteStringClass(okioPackage), "EMPTY"))
+        .put(ProtoType.DOUBLE, CodeBlock.of("0.0"))
+        .put(ProtoType.FLOAT, CodeBlock.of("0f"))
+        .put(ProtoType.FIXED64, CodeBlock.of("0L"))
+        .put(ProtoType.INT64, CodeBlock.of("0L"))
+        .put(ProtoType.SFIXED64, CodeBlock.of("0L"))
+        .put(ProtoType.SINT64, CodeBlock.of("0L"))
+        .put(ProtoType.UINT64, CodeBlock.of("0L"))
+        .put(ProtoType.FIXED32, CodeBlock.of("0"))
+        .put(ProtoType.INT32, CodeBlock.of("0"))
+        .put(ProtoType.SFIXED32, CodeBlock.of("0"))
+        .put(ProtoType.SINT32, CodeBlock.of("0"))
+        .put(ProtoType.UINT32, CodeBlock.of("0"))
+        .build();
+  }
+
+  private static Map<ProtoType, TypeName> replaceBuiltInTypes(
+      Map<ProtoType, TypeName> typeToJavaName, String okioPackage) {
+    Map<ProtoType, TypeName> result = new LinkedHashMap<>(typeToJavaName);
+    result.putAll(builtInTypesMap(okioPackage));
+    return result;
   }
 
   private static void putAllExtensions(
@@ -1670,7 +1720,7 @@ public final class JavaGenerator {
       result.addParameter(param.build());
       result.addCode("$L, ", fieldName);
     }
-    result.addCode("$T.EMPTY);\n", BYTE_STRING);
+    result.addCode("$T.EMPTY);\n", byteStringClass);
     return result.build();
   }
 
@@ -1775,7 +1825,7 @@ public final class JavaGenerator {
       result.addParameter(builderJavaType, builderName);
     }
 
-    result.addParameter(BYTE_STRING, unknownFieldsName);
+    result.addParameter(byteStringClass, unknownFieldsName);
 
     return result.build();
   }
@@ -2256,14 +2306,15 @@ public final class JavaGenerator {
     } else if (javaType.equals(STRING)) {
       return CodeBlock.of("$S", value != null ? value : "");
 
-    } else if (javaType.equals(BYTE_STRING)) {
+    } else if (javaType.equals(byteStringClass)) {
       if (value == null) {
-        return CodeBlock.of("$T.EMPTY", ByteString.class);
+        return CodeBlock.of("$T.EMPTY", byteStringClass);
       } else {
         return CodeBlock.of(
             "$T.decodeBase64($S)",
-            ByteString.class,
-            ByteString.encodeString(String.valueOf(value), Charsets.ISO_8859_1).base64());
+            byteStringClass,
+            Base64.getEncoder()
+                .encodeToString(String.valueOf(value).getBytes(Charsets.ISO_8859_1)));
       }
 
     } else if (isEnum(type) && value != null) {
@@ -2291,7 +2342,7 @@ public final class JavaGenerator {
         } else if (field.isOneOf()) {
           return CodeBlock.of("null");
         } else if (protoType.isScalar()) {
-          CodeBlock value = PROTOTYPE_TO_IDENTITY_VALUES.get(protoType);
+          CodeBlock value = prototypeToIdentityValues.get(protoType);
           if (value == null) {
             throw new IllegalArgumentException("Unexpected scalar proto type: " + protoType);
           }
