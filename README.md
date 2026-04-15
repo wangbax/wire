@@ -25,6 +25,54 @@ runtime.
   original `wire-runtime`, `wire-gson-support`, `wire-moshi-adapter`, and
   `wire-grpc-client` modules when using this forked integration.
 
+How to Use
+----------
+
+The examples below use the forked release `5.5.1-okio-shaded-1`.
+
+Gradle
+
+```kotlin
+buildscript {
+  repositories {
+    mavenCentral()
+  }
+  dependencies {
+    classpath("io.github.wangbax:wire-gradle-plugin:5.5.1-okio-shaded-1")
+  }
+}
+
+apply(plugin = "com.squareup.wire")
+
+dependencies {
+  implementation("io.github.wangbax:wire-runtime-jvm-shaded:5.5.1-okio-shaded-1")
+}
+
+wire {
+  kotlin {
+    okioPackage = "com.squareup.wire.shaded.okio"
+  }
+}
+```
+
+If you also use extension modules, replace them with the shaded artifacts from
+the same version, such as `wire-gson-support-jvm-shaded`,
+`wire-moshi-adapter-jvm-shaded`, and `wire-grpc-client-jvm-shaded`.
+
+CLI
+
+```bash
+wire-compiler \
+  --proto_path=src/main/proto \
+  --kotlin_out=build/generated/source/wire \
+  --okio_package=com.squareup.wire.shaded.okio \
+  path/to/your.proto
+```
+
+After regeneration, the generated models will import
+`com.squareup.wire.shaded.okio.ByteString`, so they can run alongside
+applications that still depend on `okio 1.x`.
+
 License
 --------
 
