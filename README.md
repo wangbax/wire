@@ -5,6 +5,26 @@ See the [project website][wire] for documentation and APIs.
 
 Wire is the best solution to manage your [protobuf][1] schemas!
 
+Fork Changes
+------------
+
+This fork is based on the `wire_5.x` branch and publishes artifacts under the
+`io.github.wangbax` namespace.
+
+It adds a shaded Okio integration so applications that still depend on
+`okio 1.x` can use Wire without pulling in the original `okio 3.x` package at
+runtime.
+
+- Runtime artifacts such as `wire-runtime-jvm-shaded` relocate `okio.*` to
+  `com.squareup.wire.shaded.okio.*`.
+- Generated code can target the relocated package with the CLI flag
+  `--okio_package=com.squareup.wire.shaded.okio`.
+- The Gradle plugin exposes the same setting via `okioPackage =
+  "com.squareup.wire.shaded.okio"`.
+- Consumers should depend on the shaded runtime artifacts instead of the
+  original `wire-runtime`, `wire-gson-support`, `wire-moshi-adapter`, and
+  `wire-grpc-client` modules when using this forked integration.
+
 License
 --------
 
