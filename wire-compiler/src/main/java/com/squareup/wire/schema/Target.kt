@@ -15,8 +15,10 @@
  */
 package com.squareup.wire.schema
 
+import com.squareup.wire.java.JavaGenerator
 import com.squareup.wire.java.JavaSchemaHandler
 import com.squareup.wire.kotlin.EnumMode
+import com.squareup.wire.kotlin.KotlinGenerator
 import com.squareup.wire.kotlin.KotlinSchemaHandler
 import com.squareup.wire.kotlin.RpcCallStyle
 import com.squareup.wire.kotlin.RpcRole
@@ -53,6 +55,9 @@ data class JavaTarget(
 
   /** If true, the constructor of all generated types will be non-public. */
   val buildersOnly: Boolean = false,
+
+  /** Package name used for generated Okio references such as ByteString. */
+  val okioPackage: String = JavaGenerator.DEFAULT_OKIO_PACKAGE,
 ) : Target() {
   override fun newHandler(): SchemaHandler {
     return JavaSchemaHandler(
@@ -62,6 +67,7 @@ data class JavaTarget(
       emitDeclaredOptions = emitDeclaredOptions,
       emitAppliedOptions = emitAppliedOptions,
       buildersOnly = buildersOnly,
+      okioPackage = okioPackage,
     )
   }
 
@@ -163,6 +169,9 @@ data class KotlinTarget(
    * critical usages.
    */
   private val makeImmutableCopies: Boolean = true,
+
+  /** Package name used for generated Okio references such as ByteString. */
+  val okioPackage: String = KotlinGenerator.DEFAULT_OKIO_PACKAGE,
 ) : Target() {
   override fun newHandler(): SchemaHandler {
     return KotlinSchemaHandler(
@@ -183,6 +192,7 @@ data class KotlinTarget(
       mutableTypes = mutableTypes,
       explicitStreamingCalls = explicitStreamingCalls,
       makeImmutableCopies = makeImmutableCopies,
+      okioPackage = okioPackage,
     )
   }
 

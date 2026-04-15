@@ -117,10 +117,9 @@ import com.squareup.wire.schema.internal.legacyQualifiedFieldName
 import com.squareup.wire.schema.internal.optionValueToInt
 import com.squareup.wire.schema.internal.optionValueToLong
 import java.util.Locale
+import java.util.Base64
 import kotlinx.coroutines.channels.ReceiveChannel
 import kotlinx.coroutines.channels.SendChannel
-import okio.ByteString
-import okio.ByteString.Companion.encode
 
 class KotlinGenerator private constructor(
   val schema: Schema,
@@ -142,8 +141,14 @@ class KotlinGenerator private constructor(
   private val mutableTypes: Boolean,
   private val explicitStreamingCalls: Boolean,
   private val makeImmutableCopies: Boolean,
+  private val okioPackage: String,
 ) {
   private val nameAllocatorStore = mutableMapOf<Type, NameAllocator>()
+  private val jvmAnnotationPackage: String = if (javaInterOp) "kotlin.jvm" else "com.squareup.wire.internal"
+  private val useJavaInterop: Boolean = javaInterOp || buildersOnly
+  private val okioByteString = okioByteStringClass(okioPackage)
+  private val okioByteStringCompanion = okioByteString.nestedClass("Companion")
+  private val prototypeToIdentityValues = prototypeToIdentityValues(okioPackage)
 
   @Suppress("RecursivePropertyAccessor")
   private val ProtoType.typeName: TypeName
@@ -902,7 +907,7 @@ class KotlinGenerator private constructor(
       }
     }
     result.addParameter(
-      ParameterSpec.builder("unknownFields", ByteString::class)
+      ParameterSpec.builder("unknownFields", okioByteString)
         .defaultValue("this.unknownFields")
         .build(),
     )
@@ -1534,10 +1539,10 @@ class KotlinGenerator private constructor(
       typeName == FLOAT -> defaultValue.toFloatFieldInitializer()
       typeName == DOUBLE -> defaultValue.toDoubleFieldInitializer()
       typeName == STRING -> CodeBlock.of("%S", defaultValue)
-      typeName == ByteString::class.asTypeName() -> CodeBlock.of(
+      typeName == okioByteString -> CodeBlock.of(
         "%S.%M()!!",
-        defaultValue.toString().encode(charset = Charsets.ISO_8859_1).base64(),
-        ByteString.Companion::class.asClassName().member("decodeBase64"),
+        Base64.getEncoder().encodeToString(defaultValue.toString().toByteArray(Charsets.ISO_8859_1)),
+        okioByteStringCompanion.member("decodeBase64"),
       )
       protoType.isEnum -> CodeBlock.of("%T.%L", typeName, defaultValue)
       else -> throw IllegalStateException("$protoType is not an allowed scalar type")
@@ -2181,7 +2186,7 @@ class KotlinGenerator private constructor(
           }
         }
         add(",⇤\n")
-        add("unknownFields = %T.EMPTY,⇤\n", ByteString::class)
+        add("unknownFields = %T.EMPTY,⇤\n", okioByteString)
         add(")\n")
       }
       return listOf(redactBuilder.addCode(newBuilderBlock).build())
@@ -2205,7 +2210,7 @@ class KotlinGenerator private constructor(
         else -> throw IllegalArgumentException("Unexpected element: $fieldOrOneOf")
       }
     }
-    redactedFields += CodeBlock.of("unknownFields = %T.EMPTY", ByteString::class)
+    redactedFields += CodeBlock.of("unknownFields = %T.EMPTY", okioByteString)
 
     val chunkedFields = redactedFields.chunked(FIELD_CHUNK_SIZE)
     if (chunkedFields.size == 1) {
@@ -2248,7 +2253,7 @@ class KotlinGenerator private constructor(
         isRepeated -> CodeBlock.of("emptyList()")
         isMap -> CodeBlock.of("emptyMap()")
         encodeMode!! == EncodeMode.NULL_IF_ABSENT -> CodeBlock.of("null")
-        isScalar -> PROTOTYPE_TO_IDENTITY_VALUES[type!!]
+        isScalar -> prototypeToIdentityValues[type!!]
         else -> CodeBlock.of("null")
       }
     } else if (!type!!.isScalar && !type!!.isEnum) {
@@ -2850,7 +2855,7 @@ class KotlinGenerator private constructor(
           if (protoType.isStructNull) return CodeBlock.of("null")
           if (isOneOf) return CodeBlock.of("null")
           when {
-            protoType.isScalar -> PROTOTYPE_TO_IDENTITY_VALUES[protoType]
+            protoType.isScalar -> prototypeToIdentityValues[protoType]
               ?: throw IllegalArgumentException("Unexpected scalar proto type: $protoType")
             type is MessageType -> CodeBlock.of("null")
             type is EnumType -> type.identity()
@@ -3105,11 +3110,15 @@ class KotlinGenerator private constructor(
   }
 
   companion object {
-    fun builtInType(protoType: ProtoType): Boolean = protoType in BUILT_IN_TYPES.keys
+    const val DEFAULT_OKIO_PACKAGE = "okio"
 
-    private val BUILT_IN_TYPES = mapOf(
+    fun builtInType(protoType: ProtoType): Boolean = protoType in builtInTypes(DEFAULT_OKIO_PACKAGE).keys
+
+    private fun okioByteStringClass(okioPackage: String) = ClassName(okioPackage, "ByteString")
+
+    private fun builtInTypes(okioPackage: String) = mapOf(
       ProtoType.BOOL to BOOLEAN,
-      ProtoType.BYTES to ByteString::class.asClassName(),
+      ProtoType.BYTES to okioByteStringClass(okioPackage),
       ProtoType.DOUBLE to DOUBLE,
       ProtoType.FLOAT to FLOAT,
       ProtoType.FIXED32 to INT,
@@ -3141,12 +3150,12 @@ class KotlinGenerator private constructor(
       ProtoType.UINT32_VALUE to INT.copy(nullable = true),
       ProtoType.BOOL_VALUE to BOOLEAN.copy(nullable = true),
       ProtoType.STRING_VALUE to String::class.asClassName().copy(nullable = true),
-      ProtoType.BYTES_VALUE to ByteString::class.asClassName().copy(nullable = true),
+      ProtoType.BYTES_VALUE to okioByteStringClass(okioPackage).copy(nullable = true),
     )
-    private val PROTOTYPE_TO_IDENTITY_VALUES = mapOf(
+    private fun prototypeToIdentityValues(okioPackage: String) = mapOf(
       ProtoType.BOOL to CodeBlock.of("false"),
       ProtoType.STRING to CodeBlock.of("\"\""),
-      ProtoType.BYTES to CodeBlock.of("%T.%L", ByteString::class, "EMPTY"),
+      ProtoType.BYTES to CodeBlock.of("%T.%L", okioByteStringClass(okioPackage), "EMPTY"),
       ProtoType.DOUBLE to CodeBlock.of("0.0"),
       ProtoType.FLOAT to CodeBlock.of("0f"),
       ProtoType.FIXED64 to CodeBlock.of("0L"),
@@ -3187,6 +3196,7 @@ class KotlinGenerator private constructor(
       mutableTypes: Boolean = false,
       explicitStreamingCalls: Boolean = false,
       makeImmutableCopies: Boolean = true,
+      okioPackage: String = DEFAULT_OKIO_PACKAGE,
     ): KotlinGenerator {
       val typeToKotlinName = mutableMapOf<ProtoType, TypeName>()
       val memberToKotlinName = mutableMapOf<ProtoMember, TypeName>()
@@ -3220,7 +3230,7 @@ class KotlinGenerator private constructor(
         )
       }
 
-      typeToKotlinName.putAll(BUILT_IN_TYPES)
+      typeToKotlinName.putAll(builtInTypes(okioPackage))
 
       return KotlinGenerator(
         schema = schema,
@@ -3242,6 +3252,7 @@ class KotlinGenerator private constructor(
         mutableTypes = mutableTypes,
         explicitStreamingCalls = explicitStreamingCalls,
         makeImmutableCopies = makeImmutableCopies,
+        okioPackage = okioPackage,
       )
     }
 

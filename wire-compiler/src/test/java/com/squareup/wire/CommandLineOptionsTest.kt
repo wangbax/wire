@@ -185,5 +185,12 @@ class CommandLineOptionsTest {
     assertThat(e).hasMessage("No enum constant com.squareup.wire.kotlin.EnumMode.INVALID")
   }
 
+  @Test
+  fun okioPackage() {
+    val compiler = parseArgs("--java_out=.", "--okio_package=com.squareup.wire.shaded.okio")
+
+    assertThat(compiler.okioPackage).isEqualTo("com.squareup.wire.shaded.okio")
+  }
+
   private fun parseArgs(vararg args: String) = WireCompiler.forArgs(args = *args)
 }

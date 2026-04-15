@@ -56,6 +56,7 @@ internal class KotlinWithProfilesGenerator(private val schema: Schema) {
     enumMode: EnumMode = EnumMode.ENUM_CLASS,
     mutableTypes: Boolean = false,
     makeImmutableCopies: Boolean = true,
+    okioPackage: String = KotlinGenerator.DEFAULT_OKIO_PACKAGE,
   ): String {
     val kotlinGenerator = KotlinGenerator(
       schema,
@@ -66,6 +67,7 @@ internal class KotlinWithProfilesGenerator(private val schema: Schema) {
       enumMode = enumMode,
       mutableTypes = mutableTypes,
       makeImmutableCopies = makeImmutableCopies,
+      okioPackage = okioPackage,
     )
     val type = schema.getType(typeName)!!
     val typeSpec = kotlinGenerator.generateType(type)
