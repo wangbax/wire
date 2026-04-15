@@ -47,6 +47,9 @@ class JavaSchemaHandler(
 
   /** If true, the constructor of all generated types will be non-public. */
   private val buildersOnly: Boolean = false,
+
+  /** Package name used for generated Okio references such as ByteString. */
+  private val okioPackage: String = JavaGenerator.DEFAULT_OKIO_PACKAGE,
 ) : SchemaHandler() {
   private lateinit var javaGenerator: JavaGenerator
 
@@ -60,6 +63,7 @@ class JavaSchemaHandler(
       .withCompact(compact)
       .withOptions(emitDeclaredOptions, emitAppliedOptions)
       .withBuildersOnly(buildersOnly)
+      .withOkioPackage(okioPackage)
 
     context.fileSystem.createDirectories(context.outDirectory)
 
