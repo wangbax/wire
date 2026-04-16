@@ -23,7 +23,7 @@ import com.squareup.wire.schema.Location
 import com.squareup.wire.schema.SchemaException
 import kotlin.test.Test
 import kotlin.test.assertFailsWith
-import okio.Path.Companion.toPath
+import com.squareup.wire.shaded.okio.Path.Companion.toPath
 
 class SchemaBuilderJvmTest {
   @Test fun emptySchema() {

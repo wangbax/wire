@@ -28,7 +28,7 @@ import kotlin.Nothing
 import kotlin.String
 import kotlin.Suppress
 import kotlin.collections.List
-import okio.ByteString
+import com.squareup.wire.shaded.okio.ByteString
 
 public class EmbeddedMessage(
   inner_repeated_number: List<Int> = emptyList(),

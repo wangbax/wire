@@ -18,7 +18,7 @@ package com.squareup.wire.internal
 import com.squareup.wire.FieldEncoding
 import com.squareup.wire.Syntax
 import kotlin.reflect.KClass
-import okio.ByteString
+import com.squareup.wire.shaded.okio.ByteString
 
 /**
  * A representation of a message and its builder class. Typically these are generated subtypes of

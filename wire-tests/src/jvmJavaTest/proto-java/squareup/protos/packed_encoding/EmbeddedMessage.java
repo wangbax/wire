@@ -18,7 +18,7 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.StringBuilder;
 import java.util.List;
-import okio.ByteString;
+import com.squareup.wire.shaded.okio.ByteString;
 
 public final class EmbeddedMessage extends Message<EmbeddedMessage, EmbeddedMessage.Builder> {
   public static final ProtoAdapter<EmbeddedMessage> ADAPTER = new ProtoAdapter_EmbeddedMessage();

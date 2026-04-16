@@ -16,8 +16,8 @@
 package com.squareup.wire
 
 import kotlin.coroutines.cancellation.CancellationException
-import okio.IOException
-import okio.Timeout
+import com.squareup.wire.shaded.okio.IOException
+import com.squareup.wire.shaded.okio.Timeout
 
 /**
  * A single call to a remote server. This call sends a single request value and receives a single

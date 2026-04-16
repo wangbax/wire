@@ -21,7 +21,7 @@ import assertk.assertions.isEmpty
 import assertk.assertions.isEqualTo
 import com.squareup.wire.protos.kotlin.unknownfields.VersionOne
 import com.squareup.wire.protos.kotlin.unknownfields.VersionTwo
-import okio.ByteString
+import com.squareup.wire.shaded.okio.ByteString
 import org.junit.Test
 
 class UnknownFieldsTest {

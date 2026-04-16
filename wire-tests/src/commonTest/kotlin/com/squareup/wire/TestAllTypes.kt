@@ -22,8 +22,8 @@ import com.squareup.wire.protos.kotlin.alltypes.AllTypes
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNull
-import okio.Buffer
-import okio.ByteString
+import com.squareup.wire.shaded.okio.Buffer
+import com.squareup.wire.shaded.okio.ByteString
 
 class TestAllTypes {
   private val adapter = AllTypes.ADAPTER

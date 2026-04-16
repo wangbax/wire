@@ -29,8 +29,8 @@ import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.channels.ReceiveChannel
 import kotlinx.coroutines.channels.SendChannel
 import kotlinx.coroutines.launch
-import okio.ForwardingTimeout
-import okio.Timeout
+import com.squareup.wire.shaded.okio.ForwardingTimeout
+import com.squareup.wire.shaded.okio.Timeout
 
 internal class RealGrpcStreamingCall<S : Any, R : Any>(
   private val grpcClient: WireGrpcClient,

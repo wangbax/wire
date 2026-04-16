@@ -23,8 +23,8 @@ import com.squareup.wire.protos.simple.SimpleMessage;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.Arrays;
-import okio.Buffer;
-import okio.ByteString;
+import com.squareup.wire.shaded.okio.Buffer;
+import com.squareup.wire.shaded.okio.ByteString;
 import org.junit.Test;
 
 public class SerializableTest {

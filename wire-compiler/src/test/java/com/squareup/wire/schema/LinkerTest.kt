@@ -25,10 +25,10 @@ import assertk.assertions.isNull
 import assertk.assertions.messageContains
 import com.squareup.wire.testing.add
 import kotlin.test.assertFailsWith
-import okio.ForwardingFileSystem
-import okio.Path
-import okio.Path.Companion.toPath
-import okio.fakefilesystem.FakeFileSystem
+import com.squareup.wire.shaded.okio.ForwardingFileSystem
+import com.squareup.wire.shaded.okio.Path
+import com.squareup.wire.shaded.okio.Path.Companion.toPath
+import com.squareup.wire.shaded.okio.fakefilesystem.FakeFileSystem
 import org.junit.Test
 
 class LinkerTest {

@@ -20,9 +20,10 @@ package com.squareup.wire.json
 import assertk.assertThat
 import assertk.assertions.isEqualTo
 import com.squareup.moshi.JsonReader
-import okio.Buffer
+import okio.buffer
+import okio.source
 
 fun assertJsonEquals(expected: String, value: String) {
-  assertThat(JsonReader.of(Buffer().writeUtf8(value)).readJsonValue())
-    .isEqualTo(JsonReader.of(Buffer().writeUtf8(expected)).readJsonValue())
+  assertThat(JsonReader.of(value.byteInputStream().source().buffer()).readJsonValue())
+    .isEqualTo(JsonReader.of(expected.byteInputStream().source().buffer()).readJsonValue())
 }

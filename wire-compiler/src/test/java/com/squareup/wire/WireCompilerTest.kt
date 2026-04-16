@@ -25,10 +25,10 @@ import assertk.assertions.isNotEmpty
 import assertk.assertions.size
 import com.squareup.wire.schema.ProtoType
 import java.util.Collections
-import okio.FileSystem
-import okio.Path
-import okio.Path.Companion.toOkioPath
-import okio.Path.Companion.toPath
+import com.squareup.wire.shaded.okio.FileSystem
+import com.squareup.wire.shaded.okio.Path
+import com.squareup.wire.shaded.okio.Path.Companion.toOkioPath
+import com.squareup.wire.shaded.okio.Path.Companion.toPath
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test

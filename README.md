@@ -11,24 +11,36 @@ Fork Changes
 This fork is based on the `wire_5.x` branch and publishes artifacts under the
 `io.github.wangbax` namespace.
 
-It adds a shaded Okio integration so applications that still depend on
-`okio 1.x` can use Wire without pulling in the original `okio 3.x` package at
-runtime.
+It is being adapted to work with a source-level shaded Okio fork so
+applications that still depend on `okio 1.x` can use Wire without depending on
+the original `okio 3.x` package name at runtime.
 
-- Runtime artifacts such as `wire-runtime-jvm-shaded` relocate `okio.*` to
+- Wire depends on `io.github.wangbax:okio` and generated code targets
   `com.squareup.wire.shaded.okio.*`.
+- gRPC API surface used by code generation is split into `wire-grpc-api` so
+  codegen is less tightly coupled to the OkHttp-backed `wire-grpc-client`
+  implementation.
 - Generated code can target the relocated package with the CLI flag
   `--okio_package=com.squareup.wire.shaded.okio`.
 - The Gradle plugin exposes the same setting via `okioPackage =
   "com.squareup.wire.shaded.okio"`.
-- Consumers should depend on the shaded runtime artifacts instead of the
-  original `wire-runtime`, `wire-gson-support`, `wire-moshi-adapter`, and
-  `wire-grpc-client` modules when using this forked integration.
+- For client-side usage, the current integration focuses on `wire-runtime`,
+  `wire-gson-support`, and `wire-moshi-adapter`.
+- `wire-grpc-client` is not part of the current integration yet because
+  OkHttp's public JVM APIs still expose original `okio.*` types.
+- Most application consumers do not need to depend on `wire-grpc-api`
+  directly; it is primarily an internal split to support generators and build
+  tooling.
 
 How to Use
 ----------
 
-The examples below use the forked release `5.5.1-okio-shaded-1`.
+This fork is currently published as `5.5.1-okio-fork-1`.
+
+If your client only uses Wire-generated `Message` types and protobuf
+encoding/decoding, `wire-runtime` is enough.
+
+If you also need Moshi or Gson adapters, add the corresponding adapter module.
 
 Gradle
 
@@ -38,14 +50,18 @@ buildscript {
     mavenCentral()
   }
   dependencies {
-    classpath("io.github.wangbax:wire-gradle-plugin:5.5.1-okio-shaded-1")
+    classpath("io.github.wangbax:wire-gradle-plugin:5.5.1-okio-fork-1")
   }
 }
 
 apply(plugin = "com.squareup.wire")
 
 dependencies {
-  implementation("io.github.wangbax:wire-runtime-jvm-shaded:5.5.1-okio-shaded-1")
+  implementation("io.github.wangbax:wire-runtime:5.5.1-okio-fork-1")
+
+  // Optional JSON adapters.
+  // implementation("io.github.wangbax:wire-gson-support:5.5.1-okio-fork-1")
+  // implementation("io.github.wangbax:wire-moshi-adapter:5.5.1-okio-fork-1")
 }
 
 wire {
@@ -55,9 +71,9 @@ wire {
 }
 ```
 
-If you also use extension modules, replace them with the shaded artifacts from
-the same version, such as `wire-gson-support-jvm-shaded`,
-`wire-moshi-adapter-jvm-shaded`, and `wire-grpc-client-jvm-shaded`.
+`wire-grpc-client` is intentionally not published in this fork yet. If your
+client only needs protobuf model generation, protobuf encoding/decoding, or
+JSON adapters, you do not need it.
 
 CLI
 

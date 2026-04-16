@@ -19,7 +19,7 @@ import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.StringBuilder;
-import okio.ByteString;
+import com.squareup.wire.shaded.okio.ByteString;
 
 /**
  * <b>NOTE:</b> This type only exists to maintain class structure for its nested types and is not an actual message.

@@ -15,8 +15,8 @@
  */
 package com.squareup.wire.internal
 
-import okio.BufferedSource
-import okio.Source
+import com.squareup.wire.shaded.okio.BufferedSource
+import com.squareup.wire.shaded.okio.Source
 
 internal sealed class GrpcDecoder(val name: String) {
   /** Returns a stream that decodes `source`. */

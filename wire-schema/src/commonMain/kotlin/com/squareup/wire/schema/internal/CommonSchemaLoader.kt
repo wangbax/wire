@@ -31,8 +31,8 @@ import com.squareup.wire.schema.internal.parser.ProtoFileElement
 import com.squareup.wire.schema.isWireRuntimeProto
 import com.squareup.wire.schema.parse
 import com.squareup.wire.schema.roots
-import okio.FileSystem
-import okio.IOException
+import com.squareup.wire.shaded.okio.FileSystem
+import com.squareup.wire.shaded.okio.IOException
 
 /**
  * Load proto files and their transitive dependencies and parse them. Keep track of which files were

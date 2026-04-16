@@ -25,8 +25,8 @@ import com.squareup.wire.testing.add
 import com.squareup.wire.testing.addZip
 import java.io.IOException
 import kotlin.test.Test
-import okio.Path
-import okio.fakefilesystem.FakeFileSystem
+import com.squareup.wire.shaded.okio.Path
+import com.squareup.wire.shaded.okio.fakefilesystem.FakeFileSystem
 import org.junit.Assert.fail
 
 // TODO(Benoit) Move to `commonTest`.

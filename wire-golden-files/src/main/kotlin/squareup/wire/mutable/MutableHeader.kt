@@ -26,7 +26,7 @@ import kotlin.Nothing
 import kotlin.String
 import kotlin.Suppress
 import kotlin.UnsupportedOperationException
-import okio.ByteString
+import com.squareup.wire.shaded.okio.ByteString
 
 public class MutableHeader(
   @field:WireField(

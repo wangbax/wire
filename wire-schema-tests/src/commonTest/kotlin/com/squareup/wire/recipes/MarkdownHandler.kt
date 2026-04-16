@@ -21,7 +21,7 @@ import com.squareup.wire.schema.ProtoType
 import com.squareup.wire.schema.SchemaHandler
 import com.squareup.wire.schema.Service
 import com.squareup.wire.schema.Type
-import okio.Path
+import com.squareup.wire.shaded.okio.Path
 
 /** Sample schema handler which generate Markdown files for types and services. */
 class MarkdownHandler : SchemaHandler() {

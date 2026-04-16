@@ -29,7 +29,7 @@ import kotlin.Nothing
 import kotlin.String
 import kotlin.Suppress
 import kotlin.collections.List
-import okio.ByteString
+import com.squareup.wire.shaded.okio.ByteString
 
 /**
  * Not used in the RPC.  Instead, this is here for the form serialized to disk.

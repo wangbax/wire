@@ -23,7 +23,7 @@ import assertk.assertions.isNotNull
 import assertk.assertions.isNull
 import com.squareup.wire.buildSchema
 import kotlin.test.Test
-import okio.Path.Companion.toPath
+import com.squareup.wire.shaded.okio.Path.Companion.toPath
 
 class ManifestPartitionTest {
   @Test fun upstreamPruneIsNotGeneratedDownstream() {

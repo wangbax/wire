@@ -31,7 +31,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.UnsupportedOperationException
 import kotlin.collections.List
-import okio.ByteString
+import com.squareup.wire.shaded.okio.ByteString
 
 public class MutablePayload(
   @field:WireField(

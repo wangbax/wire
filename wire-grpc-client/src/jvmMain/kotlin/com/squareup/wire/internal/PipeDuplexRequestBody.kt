@@ -17,9 +17,9 @@ package com.squareup.wire.internal
 
 import okhttp3.MediaType
 import okhttp3.RequestBody
-import okio.BufferedSink
-import okio.Pipe
-import okio.buffer
+import com.squareup.wire.shaded.okio.BufferedSink
+import com.squareup.wire.shaded.okio.Pipe
+import com.squareup.wire.shaded.okio.buffer
 
 /**
  * A duplex request body that provides early writes via a pipe.

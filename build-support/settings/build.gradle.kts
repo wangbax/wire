@@ -15,6 +15,9 @@ gradlePlugin {
 }
 
 repositories {
+  if (System.getProperty("useMavenLocal", "false").toBoolean()) {
+    mavenLocal()
+  }
   mavenCentral()
   gradlePluginPortal()
   google()

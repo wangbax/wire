@@ -11,7 +11,7 @@ import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.util.List;
-import okio.ByteString;
+import com.squareup.wire.shaded.okio.ByteString;
 
 public final class Pizza extends Message<Pizza, Pizza.Builder> {
   public static final ProtoAdapter<Pizza> ADAPTER = ProtoAdapter.newMessageAdapter(Pizza.class, "type.googleapis.com/squareup.proto3.Pizza", Syntax.PROTO_3);

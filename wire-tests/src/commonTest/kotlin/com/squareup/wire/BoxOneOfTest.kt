@@ -19,7 +19,7 @@ import assertk.assertions.message
 import com.squareup.wire.protos.kotlin.Form
 import kotlin.test.Test
 import kotlin.test.assertEquals
-import okio.ByteString.Companion.decodeHex
+import com.squareup.wire.shaded.okio.ByteString.Companion.decodeHex
 
 class BoxOneOfTest {
   @Test

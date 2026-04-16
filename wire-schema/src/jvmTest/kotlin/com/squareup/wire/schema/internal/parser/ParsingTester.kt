@@ -19,8 +19,8 @@ import com.squareup.wire.schema.Location
 import java.io.File
 import java.util.ArrayDeque
 import java.util.Collections
-import okio.buffer
-import okio.source
+import com.squareup.wire.shaded.okio.buffer
+import com.squareup.wire.shaded.okio.source
 
 /** Recursively traverse a directory and attempt to parse all of its proto files.  */
 object ParsingTester {

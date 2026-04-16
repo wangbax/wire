@@ -32,14 +32,12 @@ import com.squareup.wire.schema.newLoggerFactory
 import com.squareup.wire.schema.newSchemaHandler
 import java.io.IOException
 import java.nio.file.FileSystem as NioFileSystem
-import okio.FileNotFoundException
-import okio.FileSystem
-import okio.FileSystem.Companion.asOkioFileSystem
-import okio.Path
-import okio.Path.Companion.toPath
-import okio.openZip
-
-private const val DEFAULT_OKIO_PACKAGE = "okio"
+import com.squareup.wire.shaded.okio.FileNotFoundException
+import com.squareup.wire.shaded.okio.FileSystem
+import com.squareup.wire.shaded.okio.FileSystem.Companion.asOkioFileSystem
+import com.squareup.wire.shaded.okio.Path
+import com.squareup.wire.shaded.okio.Path.Companion.toPath
+import com.squareup.wire.shaded.okio.openZip
 
 /**
  * Command line interface to the Wire Java generator.
@@ -61,7 +59,6 @@ private const val DEFAULT_OKIO_PACKAGE = "okio"
  *   [--android]
  *   [--android-annotations]
  *   [--compact]
- *   [--okio_package=<package>]
  *   [--custom_option=<key>,<value>]
  *   [file [file...]]
  * ```
@@ -109,14 +106,11 @@ private const val DEFAULT_OKIO_PACKAGE = "okio"
  *
  * The `--opaque_types` takes a list of qualified named Protobuf types separated by a ','. All types
  * in the list will be evaluated as being of type `bytes`. On code generation, the fields of such
- * types will be using the platform equivalent of `bytes`, like [okio.ByteString] for the JVM. Note
+ * types will be using the platform equivalent of `bytes`, like [com.squareup.wire.shaded.okio.ByteString] for the JVM. Note
  * that scalar types cannot be opaqued. The opaque step will happen before the tree shaking one.
  *
  * The `--compact` flag will emit code that uses reflection for reading, writing, and
  * toString methods which are normally implemented with code generation.
- *
- * The `--okio_package` flag overrides the generated package used for Okio types such as
- * `ByteString`. This is useful when consuming a shaded Okio runtime on the JVM.
  *
  * The `--custom_option` flag will be passed onto the custom [SchemaHandler][com.squareup.wire.schema.SchemaHandler]
  * if set. The flag can be used as many times as needed and all key/value pairs will be aggregated
@@ -141,7 +135,6 @@ class WireCompiler internal constructor(
   val emitCompact: Boolean,
   val emitDeclaredOptions: Boolean,
   val emitAppliedOptions: Boolean,
-  val okioPackage: String,
   val permitPackageCycles: Boolean,
   val loadExhaustively: Boolean,
   val javaInterop: Boolean,
@@ -175,7 +168,6 @@ class WireCompiler internal constructor(
         emitDeclaredOptions = emitDeclaredOptions,
         emitAppliedOptions = emitAppliedOptions,
         exclusive = javaExclusive,
-        okioPackage = okioPackage,
       )
     }
     if (kotlinOut != null) {
@@ -196,7 +188,6 @@ class WireCompiler internal constructor(
         emitProtoReader32 = emitProtoReader32,
         explicitStreamingCalls = kotlinExplicitStreamingCalls,
         enumMode = kotlinEnumMode,
-        okioPackage = okioPackage,
       )
     }
     if (swiftOut != null) {
@@ -291,7 +282,6 @@ class WireCompiler internal constructor(
     private const val ANDROID = "--android"
     private const val ANDROID_ANNOTATIONS = "--android-annotations"
     private const val COMPACT = "--compact"
-    private const val OKIO_PACKAGE = "--okio_package="
     private const val SKIP_DECLARED_OPTIONS = "--skip_declared_options"
     private const val SKIP_APPLIED_OPTIONS = "--skip_applied_options"
     private const val PERMIT_PACKAGE_CYCLES_OPTIONS = "--permit_package_cycles"
@@ -364,7 +354,6 @@ class WireCompiler internal constructor(
       var emitCompact = false
       var emitDeclaredOptions = true
       var emitAppliedOptions = true
-      var okioPackage = DEFAULT_OKIO_PACKAGE
       var permitPackageCycles = false
       var loadExhaustively = false
       var javaInterop = false
@@ -447,10 +436,6 @@ class WireCompiler internal constructor(
               .substring(CUSTOM_OPTION_FLAG.length)
               .split(',', limit = 2)
             customOptions[key] = value
-          }
-
-          arg.startsWith(OKIO_PACKAGE) -> {
-            okioPackage = arg.substring(OKIO_PACKAGE.length)
           }
 
           arg.startsWith(OPAQUE_TYPES_FLAG) -> {
@@ -549,7 +534,6 @@ class WireCompiler internal constructor(
         emitCompact = emitCompact,
         emitDeclaredOptions = emitDeclaredOptions,
         emitAppliedOptions = emitAppliedOptions,
-        okioPackage = okioPackage,
         permitPackageCycles = permitPackageCycles,
         loadExhaustively = loadExhaustively,
         javaInterop = javaInterop,

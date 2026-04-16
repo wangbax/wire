@@ -10,7 +10,7 @@ import com.squareup.wire.WireField;
 import com.squareup.wire.internal.Internal;
 import java.lang.Object;
 import java.lang.Override;
-import okio.ByteString;
+import com.squareup.wire.shaded.okio.ByteString;
 
 public final class FreeDrinkPromotion extends Message<FreeDrinkPromotion, FreeDrinkPromotion.Builder> {
   public static final ProtoAdapter<FreeDrinkPromotion> ADAPTER = ProtoAdapter.newMessageAdapter(FreeDrinkPromotion.class, "type.googleapis.com/squareup.proto3.FreeDrinkPromotion", Syntax.PROTO_3);

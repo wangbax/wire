@@ -20,7 +20,7 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.StringBuilder;
 import java.util.List;
-import okio.ByteString;
+import com.squareup.wire.shaded.okio.ByteString;
 
 public final class Person extends Message<Person, Person.Builder> {
   public static final ProtoAdapter<Person> ADAPTER = new ProtoAdapter_Person();

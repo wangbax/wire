@@ -26,7 +26,7 @@ import com.squareup.wire.schema.MessageType;
 import com.squareup.wire.schema.PruningRules;
 import com.squareup.wire.schema.Schema;
 import java.io.IOException;
-import okio.Path;
+import com.squareup.wire.shaded.okio.Path;
 import org.junit.Test;
 
 public final class JavaGeneratorTest {
@@ -115,21 +115,6 @@ public final class JavaGeneratorTest {
             .build();
     assertThat(new JavaWithProfilesGenerator(schema).generateJava("Message"))
         .contains("" + "public Message(Builder builder, ByteString unknownFields)");
-  }
-
-  @Test
-  public void customOkioPackage() throws Exception {
-    Schema schema =
-        new SchemaBuilder()
-            .add(
-                Path.get("message.proto"),
-                "" + "message Message {\n" + "  optional bytes payload = 1;\n" + "}\n")
-            .build();
-
-    assertThat(
-            new JavaGeneratorHelper(schema)
-                .generateJava("Message", null, "com.squareup.wire.shaded.okio"))
-        .contains("import com.squareup.wire.shaded.okio.ByteString;");
   }
 
   @Test

@@ -21,7 +21,7 @@ import java.lang.String;
 import java.lang.StringBuilder;
 import java.util.List;
 import java.util.Objects;
-import okio.ByteString;
+import com.squareup.wire.shaded.okio.ByteString;
 
 /**
  * Message representing a person, includes their name, unique ID number, email and phone number.

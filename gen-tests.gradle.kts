@@ -1,14 +1,16 @@
-import okio.FileSystem
-import okio.Path.Companion.toPath
+import com.squareup.wire.shaded.okio.FileSystem
+import com.squareup.wire.shaded.okio.Path.Companion.toPath
 import org.jetbrains.kotlin.gradle.plugin.KotlinPlatformType
 
 buildscript {
   dependencies {
     classpath(libs.pluginz.kotlin)
-    classpath(platform(libs.okio.bom))
     classpath(libs.okio.core)
   }
   repositories {
+    if (System.getProperty("useMavenLocal", "false").toBoolean()) {
+      mavenLocal()
+    }
     mavenCentral()
   }
 }

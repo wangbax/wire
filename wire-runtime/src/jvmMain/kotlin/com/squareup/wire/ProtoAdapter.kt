@@ -22,12 +22,12 @@ import java.io.IOException
 import java.io.InputStream
 import java.io.OutputStream
 import kotlin.reflect.KClass
-import okio.BufferedSink
-import okio.BufferedSource
-import okio.ByteString
-import okio.buffer
-import okio.sink
-import okio.source
+import com.squareup.wire.shaded.okio.BufferedSink
+import com.squareup.wire.shaded.okio.BufferedSource
+import com.squareup.wire.shaded.okio.ByteString
+import com.squareup.wire.shaded.okio.buffer
+import com.squareup.wire.shaded.okio.sink
+import com.squareup.wire.shaded.okio.source
 
 actual abstract class ProtoAdapter<E> actual constructor(
   internal actual val fieldEncoding: FieldEncoding,

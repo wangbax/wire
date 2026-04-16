@@ -15,9 +15,9 @@
  */
 package com.squareup.wire
 
-import okio.Buffer
-import okio.BufferedSink
-import okio.ByteString
+import com.squareup.wire.shaded.okio.Buffer
+import com.squareup.wire.shaded.okio.BufferedSink
+import com.squareup.wire.shaded.okio.ByteString
 
 /** A protocol buffer message. */
 expect abstract class Message<M : Message<M, B>, B : Message.Builder<M, B>> protected constructor(

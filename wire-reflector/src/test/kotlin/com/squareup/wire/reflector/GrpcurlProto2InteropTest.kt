@@ -24,8 +24,8 @@ import com.squareup.wire.schema.SchemaLoader
 import com.squareup.wire.testing.UnwantedValueStripper
 import grpc.reflection.v1alpha.ServerReflectionRequest
 import grpc.reflection.v1alpha.ServerReflectionResponse
-import okio.ByteString.Companion.decodeBase64
-import okio.FileSystem
+import com.squareup.wire.shaded.okio.ByteString.Companion.decodeBase64
+import com.squareup.wire.shaded.okio.FileSystem
 import org.junit.Test
 
 // Reference golang reflection tests https://github.com/juliaogris/reflect

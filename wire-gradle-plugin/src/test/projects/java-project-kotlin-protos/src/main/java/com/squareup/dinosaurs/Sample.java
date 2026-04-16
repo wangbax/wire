@@ -18,7 +18,7 @@ package com.squareup.dinosaurs;
 import com.squareup.geology.Period;
 import java.io.IOException;
 import java.util.Arrays;
-import okio.ByteString;
+import com.squareup.wire.shaded.okio.ByteString;
 
 public final class Sample {
   public void run() throws IOException {

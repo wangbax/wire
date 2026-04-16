@@ -35,9 +35,9 @@ import com.squareup.wire.schema.Rpc
 import com.squareup.wire.schema.Schema
 import com.squareup.wire.schema.Service
 import com.squareup.wire.schema.Type
-import okio.ByteString
-import okio.ByteString.Companion.encodeUtf8
-import okio.ByteString.Companion.toByteString
+import com.squareup.wire.shaded.okio.ByteString
+import com.squareup.wire.shaded.okio.ByteString.Companion.encodeUtf8
+import com.squareup.wire.shaded.okio.ByteString.Companion.toByteString
 
 /**
  * This class encodes files from a Wire schema using the types in protobuf's `descriptor.proto`.

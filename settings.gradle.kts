@@ -2,6 +2,9 @@ pluginManagement {
   includeBuild("build-support/settings")
 
   repositories {
+    if (System.getProperty("useMavenLocal", "false").toBoolean()) {
+      mavenLocal()
+    }
     mavenCentral()
     gradlePluginPortal()
     google()
@@ -14,6 +17,9 @@ plugins {
 
 dependencyResolutionManagement {
   repositories {
+    if (System.getProperty("useMavenLocal", "false").toBoolean()) {
+      mavenLocal()
+    }
     mavenCentral()
     google()
   }
@@ -24,6 +30,7 @@ includeBuild("build-support") {
     substitute(module("com.squareup.wire.build:gradle-plugin")).using(project(":"))
     substitute(module("com.squareup.wire:wire-compiler")).using(project(":wire-compiler"))
     substitute(module("com.squareup.wire:wire-gradle-plugin")).using(project(":wire-gradle-plugin"))
+    substitute(module("com.squareup.wire:wire-grpc-api")).using(project(":wire-grpc-api"))
     substitute(module("com.squareup.wire:wire-grpc-client")).using(project(":wire-grpc-client"))
     substitute(module("com.squareup.wire:wire-java-generator")).using(project(":wire-java-generator"))
     substitute(module("com.squareup.wire:wire-kotlin-generator")).using(project(":wire-kotlin-generator"))
@@ -45,21 +52,17 @@ include(":wire-compiler")
 include(":wire-golden-files")
 include(":wire-gradle-plugin")
 include(":wire-gradle-plugin-playground")
+include(":wire-grpc-api")
 include(":wire-grpc-client")
-include(":wire-grpc-client-jvm-shaded")
 include(":wire-grpc-mockwebserver")
-include(":wire-grpc-mockwebserver-jvm-shaded")
-include(":wire-gson-support-jvm-shaded")
 include(":wire-grpc-tests")
 include(":wire-gson-support")
 include(":wire-java-generator")
 include(":wire-kotlin-generator")
 include(":wire-moshi-adapter")
-include(":wire-moshi-adapter-jvm-shaded")
 include(":wire-protoc-compatibility-tests")
 include(":wire-reflector")
 include(":wire-runtime")
-include(":wire-runtime-jvm-shaded")
 include(":wire-schema")
 include(":wire-schema-tests")
 include(":wire-swift-generator")

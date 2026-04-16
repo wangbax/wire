@@ -18,7 +18,7 @@ import java.lang.String;
 import java.lang.StringBuilder;
 import java.util.Collections;
 import java.util.List;
-import okio.ByteString;
+import com.squareup.wire.shaded.okio.ByteString;
 
 public final class RedactedRepeated extends Message<RedactedRepeated, RedactedRepeated.Builder> {
   public static final ProtoAdapter<RedactedRepeated> ADAPTER = new ProtoAdapter_RedactedRepeated();

@@ -15,7 +15,7 @@
  */
 package com.squareup.wire.internal
 
-import okio.IOException
+import com.squareup.wire.shaded.okio.IOException
 
 expect interface Serializable
 

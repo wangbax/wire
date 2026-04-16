@@ -26,8 +26,8 @@ import kotlin.test.assertFailsWith
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
 import kotlin.test.fail
-import okio.ByteString
-import okio.ByteString.Companion.decodeHex
+import com.squareup.wire.shaded.okio.ByteString
+import com.squareup.wire.shaded.okio.ByteString.Companion.decodeHex
 
 class AnyMessageTest {
   @Test fun happyPath() {

@@ -22,9 +22,9 @@ import java.util.concurrent.TimeUnit
 import kotlin.coroutines.resume
 import kotlin.coroutines.resumeWithException
 import kotlinx.coroutines.suspendCancellableCoroutine
-import okio.ForwardingTimeout
-import okio.IOException
-import okio.Timeout
+import com.squareup.wire.shaded.okio.ForwardingTimeout
+import com.squareup.wire.shaded.okio.IOException
+import com.squareup.wire.shaded.okio.Timeout
 
 internal class RealGrpcCall<S : Any, R : Any>(
   private val grpcClient: WireGrpcClient,

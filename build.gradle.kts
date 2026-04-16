@@ -21,6 +21,9 @@ buildscript {
   }
 
   repositories {
+    if (System.getProperty("useMavenLocal", "false").toBoolean()) {
+      mavenLocal()
+    }
     mavenCentral()
     gradlePluginPortal()
     google()
@@ -32,6 +35,9 @@ allprojects {
   version = project.property("VERSION_NAME") as String
 
   repositories {
+    if (System.getProperty("useMavenLocal", "false").toBoolean()) {
+      mavenLocal()
+    }
     mavenCentral()
     google()
   }

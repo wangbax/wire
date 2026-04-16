@@ -13,7 +13,7 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
-import okio.ByteString;
+import com.squareup.wire.shaded.okio.ByteString;
 
 public final class CamelCase extends Message<CamelCase, CamelCase.Builder> {
   public static final ProtoAdapter<CamelCase> ADAPTER = ProtoAdapter.newMessageAdapter(CamelCase.class, "type.googleapis.com/squareup.proto3.CamelCase", Syntax.PROTO_3);

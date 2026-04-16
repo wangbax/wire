@@ -22,8 +22,8 @@ import assertk.assertions.isNotNull
 import com.google.protobuf.ExtensionRegistry
 import com.squareup.wire.proto2.kotlin.simple.SimpleMessage as SimpleMessageK
 import com.squareup.wire.proto2.kotlin.simple.SimpleMessageOuterClass
-import okio.ByteString
-import okio.ByteString.Companion.decodeHex
+import com.squareup.wire.shaded.okio.ByteString
+import com.squareup.wire.shaded.okio.ByteString.Companion.decodeHex
 import org.junit.Test
 import squareup.proto2.java.interop.InteropMessage as InteropMessageJ
 import squareup.proto2.java.interop.type.EnumProto2 as EnumProto2J

@@ -15,7 +15,7 @@
  */
 package com.squareup.wire
 
-import okio.ByteString.Companion.decodeHex
+import com.squareup.wire.shaded.okio.ByteString.Companion.decodeHex
 
 object TestAllTypesData {
   val expectedOutput = (

@@ -36,8 +36,8 @@ import okhttp3.Headers.Companion.headersOf
 import okhttp3.mockwebserver.Dispatcher
 import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.RecordedRequest
-import okio.Buffer
-import okio.Timeout
+import com.squareup.wire.shaded.okio.Buffer
+import com.squareup.wire.shaded.okio.Timeout
 
 /**
  * Serves gRPC calls using MockWebServer over HTTP/2.

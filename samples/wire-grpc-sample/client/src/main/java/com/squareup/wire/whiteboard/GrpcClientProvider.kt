@@ -31,7 +31,7 @@ import javax.net.ssl.X509TrustManager
 import okhttp3.OkHttpClient
 import okhttp3.Protocol.HTTP_1_1
 import okhttp3.Protocol.HTTP_2
-import okio.Buffer
+import com.squareup.wire.shaded.okio.Buffer
 
 object GrpcClientProvider {
   private val okHttpClient = OkHttpClient.Builder()

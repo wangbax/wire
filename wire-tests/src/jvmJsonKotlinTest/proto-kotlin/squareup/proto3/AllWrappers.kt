@@ -32,7 +32,7 @@ import kotlin.Unit
 import kotlin.collections.List
 import kotlin.collections.Map
 import kotlin.lazy
-import okio.ByteString
+import com.squareup.wire.shaded.okio.ByteString
 
 public class AllWrappers(
   @field:WireField(

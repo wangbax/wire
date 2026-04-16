@@ -17,7 +17,7 @@ package com.squareup.wire
 
 import com.squareup.wire.AnyMessage.Companion.pack
 import kotlin.jvm.JvmField
-import okio.ByteString
+import com.squareup.wire.shaded.okio.ByteString
 
 /**
  * Wire implementation of the `google.protobuf.Any` type. The `Any` type wraps an arbitrary

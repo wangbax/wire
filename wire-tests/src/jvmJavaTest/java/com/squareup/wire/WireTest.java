@@ -37,8 +37,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
-import okio.Buffer;
-import okio.ByteString;
+import com.squareup.wire.shaded.okio.Buffer;
+import com.squareup.wire.shaded.okio.ByteString;
 import org.junit.Test;
 
 /** Test Wire runtime. */

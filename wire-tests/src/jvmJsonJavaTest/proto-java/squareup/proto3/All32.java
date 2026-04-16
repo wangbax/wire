@@ -12,7 +12,7 @@ import java.lang.Object;
 import java.lang.Override;
 import java.util.List;
 import java.util.Map;
-import okio.ByteString;
+import com.squareup.wire.shaded.okio.ByteString;
 
 public final class All32 extends Message<All32, All32.Builder> {
   public static final ProtoAdapter<All32> ADAPTER = ProtoAdapter.newMessageAdapter(All32.class, "type.googleapis.com/squareup.proto3.All32", Syntax.PROTO_3);

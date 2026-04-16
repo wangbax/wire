@@ -10,7 +10,7 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.StringBuilder;
 import java.util.Map;
-import okio.ByteString;
+import com.squareup.wire.shaded.okio.ByteString;
 
 public final class ModelEvaluation extends Message<ModelEvaluation, ModelEvaluation.Builder> {
   public static final ProtoAdapter<ModelEvaluation> ADAPTER = new ProtoAdapter_ModelEvaluation();

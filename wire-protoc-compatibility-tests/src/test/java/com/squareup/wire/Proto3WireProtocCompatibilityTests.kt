@@ -34,10 +34,10 @@ import com.squareup.wire.json.assertJsonEquals
 import com.squareup.wire.proto3.kotlin.requiredextension.RequiredExtension as RequiredExtensionK
 import com.squareup.wire.proto3.kotlin.requiredextension.RequiredExtensionMessage as RequiredExtensionMessageK
 import java.io.File
-import okio.ByteString
-import okio.ByteString.Companion.decodeHex
-import okio.buffer
-import okio.source
+import com.squareup.wire.shaded.okio.ByteString
+import com.squareup.wire.shaded.okio.ByteString.Companion.decodeHex
+import com.squareup.wire.shaded.okio.buffer
+import com.squareup.wire.shaded.okio.source
 import org.junit.Assert.fail
 import org.junit.Test
 import squareup.proto2.java.interop.type.MessageProto2 as MessageProto2J

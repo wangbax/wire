@@ -47,11 +47,11 @@ import com.squareup.wire.ProtoReader.Companion.TAG_FIELD_ENCODING_BITS
 import com.squareup.wire.internal.ProtocolException
 import com.squareup.wire.internal.and
 import com.squareup.wire.internal.shl
-import okio.Buffer
-import okio.ByteString
-import okio.ByteString.Companion.toByteString
-import okio.EOFException
-import okio.IOException
+import com.squareup.wire.shaded.okio.Buffer
+import com.squareup.wire.shaded.okio.ByteString
+import com.squareup.wire.shaded.okio.ByteString.Companion.toByteString
+import com.squareup.wire.shaded.okio.EOFException
+import com.squareup.wire.shaded.okio.IOException
 
 internal class ByteArrayProtoReader32(
   private val source: ByteArray,
