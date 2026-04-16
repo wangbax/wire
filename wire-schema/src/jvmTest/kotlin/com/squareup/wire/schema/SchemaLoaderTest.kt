@@ -32,10 +32,10 @@ import kotlin.text.Charsets.UTF_16LE
 import kotlin.text.Charsets.UTF_32BE
 import kotlin.text.Charsets.UTF_32LE
 import kotlin.text.Charsets.UTF_8
-import okio.ByteString.Companion.decodeHex
-import okio.Path
-import okio.Path.Companion.toPath
-import okio.fakefilesystem.FakeFileSystem
+import com.squareup.wire.shaded.okio.ByteString.Companion.decodeHex
+import com.squareup.wire.shaded.okio.Path
+import com.squareup.wire.shaded.okio.Path.Companion.toPath
+import com.squareup.wire.shaded.okio.fakefilesystem.FakeFileSystem
 
 // TODO(Benoit) Move this class to commonTest, and test `SchemaLoader` instead of `CommonSchemaLoader`.
 class SchemaLoaderTest {

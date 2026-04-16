@@ -18,8 +18,8 @@ package com.squareup.wire
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.channels.ReceiveChannel
-import okio.IOException
-import okio.Timeout
+import com.squareup.wire.shaded.okio.IOException
+import com.squareup.wire.shaded.okio.Timeout
 
 /**
  * A single streaming call to a remote server.

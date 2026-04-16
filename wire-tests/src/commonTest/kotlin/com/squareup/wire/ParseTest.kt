@@ -24,10 +24,10 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNotEquals
 import kotlin.test.fail
-import okio.ByteString
-import okio.ByteString.Companion.decodeHex
-import okio.EOFException
-import okio.IOException
+import com.squareup.wire.shaded.okio.ByteString
+import com.squareup.wire.shaded.okio.ByteString.Companion.decodeHex
+import com.squareup.wire.shaded.okio.EOFException
+import com.squareup.wire.shaded.okio.IOException
 
 class ParseTest {
   @Test

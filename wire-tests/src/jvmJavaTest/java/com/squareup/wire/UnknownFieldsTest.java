@@ -24,7 +24,7 @@ import com.squareup.wire.protos.unknownfields.VersionOne;
 import com.squareup.wire.protos.unknownfields.VersionTwo;
 import java.io.IOException;
 import java.util.Arrays;
-import okio.ByteString;
+import com.squareup.wire.shaded.okio.ByteString;
 import org.junit.Test;
 
 public class UnknownFieldsTest {

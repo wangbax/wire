@@ -35,8 +35,8 @@ package com.squareup.wire
 
 import kotlin.Throws
 import kotlin.jvm.JvmName
-import okio.ByteString
-import okio.IOException
+import com.squareup.wire.shaded.okio.ByteString
+import com.squareup.wire.shaded.okio.IOException
 
 /**
  * Reads and decodes protocol message fields using an `Int` as a cursor.

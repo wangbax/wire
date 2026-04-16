@@ -18,7 +18,7 @@ package com.squareup.wire.gradle.internal
 import com.squareup.wire.WireLogger
 import com.squareup.wire.gradle.WirePlugin
 import com.squareup.wire.schema.ProtoType
-import okio.Path
+import com.squareup.wire.shaded.okio.Path
 import org.slf4j.LoggerFactory
 
 internal object GradleWireLogger : WireLogger {

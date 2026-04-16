@@ -16,8 +16,8 @@
 package com.squareup.wire.schema
 
 import com.squareup.wire.schema.internal.parser.ProtoParser
-import okio.Path.Companion.toPath
-import okio.asResourceFileSystem
+import com.squareup.wire.shaded.okio.Path.Companion.toPath
+import com.squareup.wire.shaded.okio.asResourceFileSystem
 
 /**
  * A loader that can only load built-in `.proto` files:

@@ -18,7 +18,7 @@ package com.squareup.wire
 import com.squareup.wire.internal.ProtocolException
 import kotlin.Throws
 import kotlin.jvm.JvmStatic
-import okio.IOException
+import com.squareup.wire.shaded.okio.IOException
 
 enum class FieldEncoding(internal val value: Int) {
   VARINT(0), FIXED64(1), LENGTH_DELIMITED(2), FIXED32(5);

@@ -16,7 +16,7 @@ import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.StringBuilder;
-import okio.ByteString;
+import com.squareup.wire.shaded.okio.ByteString;
 
 public final class SendDataResponse extends Message<SendDataResponse, SendDataResponse.Builder> {
   public static final ProtoAdapter<SendDataResponse> ADAPTER = new ProtoAdapter_SendDataResponse();

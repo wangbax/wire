@@ -10,7 +10,7 @@ import com.squareup.wire.internal.Internal;
 import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
-import okio.ByteString;
+import com.squareup.wire.shaded.okio.ByteString;
 
 public final class BuyOneGetOnePromotion extends Message<BuyOneGetOnePromotion, BuyOneGetOnePromotion.Builder> {
   public static final ProtoAdapter<BuyOneGetOnePromotion> ADAPTER = ProtoAdapter.newMessageAdapter(BuyOneGetOnePromotion.class, "type.googleapis.com/squareup.proto3.BuyOneGetOnePromotion", Syntax.PROTO_3);

@@ -16,9 +16,9 @@
 package com.squareup.wire.internal
 
 import com.squareup.wire.GrpcResponse
-import okio.IOException
-import okio.Sink
-import okio.Source
+import com.squareup.wire.shaded.okio.IOException
+import com.squareup.wire.shaded.okio.Sink
+import com.squareup.wire.shaded.okio.Source
 
 internal expect interface Call {
   fun cancel()

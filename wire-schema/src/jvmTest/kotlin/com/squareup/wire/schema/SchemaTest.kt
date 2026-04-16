@@ -35,7 +35,7 @@ import com.squareup.wire.schema.internal.parser.OptionElement
 import kotlin.test.Ignore
 import kotlin.test.Test
 import kotlin.test.fail
-import okio.Path.Companion.toPath
+import com.squareup.wire.shaded.okio.Path.Companion.toPath
 
 class SchemaTest {
   @Test

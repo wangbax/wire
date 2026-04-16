@@ -23,8 +23,8 @@ import com.squareup.wire.internal.createRuntimeMessageAdapter
 import com.squareup.wire.map.Mappy
 import com.squareup.wire.map.Thing
 import java.io.IOException
-import okio.ByteString
-import okio.ByteString.Companion.decodeHex
+import com.squareup.wire.shaded.okio.ByteString
+import com.squareup.wire.shaded.okio.ByteString.Companion.decodeHex
 import org.junit.Test
 import org.junit.runner.RunWith
 import org.junit.runners.Parameterized

@@ -24,8 +24,8 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNotEquals
 import kotlin.test.assertNull
-import okio.ByteString
-import okio.ByteString.Companion.decodeHex
+import com.squareup.wire.shaded.okio.ByteString
+import com.squareup.wire.shaded.okio.ByteString.Companion.decodeHex
 
 class UnknownFieldsTest {
   private val v1Adapter = VersionOne.ADAPTER

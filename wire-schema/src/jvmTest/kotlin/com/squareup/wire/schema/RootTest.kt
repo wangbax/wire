@@ -26,8 +26,8 @@ import com.squareup.wire.testing.add
 import com.squareup.wire.testing.addZip
 import kotlin.test.Test
 import kotlin.test.assertFailsWith
-import okio.Path
-import okio.fakefilesystem.FakeFileSystem
+import com.squareup.wire.shaded.okio.Path
+import com.squareup.wire.shaded.okio.fakefilesystem.FakeFileSystem
 
 class RootTest {
   private val fs = FakeFileSystem().apply {

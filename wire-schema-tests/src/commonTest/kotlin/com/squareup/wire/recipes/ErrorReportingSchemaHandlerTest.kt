@@ -26,8 +26,8 @@ import com.squareup.wire.schema.SchemaException
 import com.squareup.wire.schema.SchemaHandler
 import kotlin.test.Test
 import kotlin.test.assertFailsWith
-import okio.Path.Companion.toPath
-import okio.fakefilesystem.FakeFileSystem
+import com.squareup.wire.shaded.okio.Path.Companion.toPath
+import com.squareup.wire.shaded.okio.fakefilesystem.FakeFileSystem
 
 class ErrorReportingSchemaHandlerTest {
   @Test fun errorsWhenStartsWithA() {

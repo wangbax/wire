@@ -31,7 +31,7 @@ import kotlin.test.assertContains
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 import kotlin.text.RegexOption.DOT_MATCHES_ALL
-import okio.Path.Companion.toPath
+import com.squareup.wire.shaded.okio.Path.Companion.toPath
 
 class KotlinGeneratorTest {
   @Test fun basic() {
@@ -164,26 +164,6 @@ class KotlinGeneratorTest {
     assertThat(code).contains("const val DEFAULT_P: Double = Double.NaN")
     assertThat(code).contains("const val DEFAULT_Q: Int = Int.MIN_VALUE")
     assertThat(code).contains("const val DEFAULT_R: Long = -2_147_483_647L")
-  }
-
-  @Test fun customOkioPackage() {
-    val schema = buildSchema {
-      add(
-        "message.proto".toPath(),
-        """
-        |message Message {
-        |  optional bytes payload = 1;
-        |}
-        """.trimMargin(),
-      )
-    }
-
-    val code = KotlinWithProfilesGenerator(schema).generateKotlin(
-      "Message",
-      okioPackage = "com.squareup.wire.shaded.okio",
-    )
-
-    assertThat(code).contains("import com.squareup.wire.shaded.okio.ByteString")
   }
 
   @Test fun nameAllocatorIsUsed() {

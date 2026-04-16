@@ -25,8 +25,8 @@ import com.squareup.wire.addFakeRuntimeProtos
 import com.squareup.wire.buildSchema
 import com.squareup.wire.schema.SchemaHandler
 import kotlin.test.Test
-import okio.Path.Companion.toPath
-import okio.fakefilesystem.FakeFileSystem
+import com.squareup.wire.shaded.okio.Path.Companion.toPath
+import com.squareup.wire.shaded.okio.fakefilesystem.FakeFileSystem
 
 class LogToWireLoggerHandlerTest {
   @Test fun loggingArtifacts() {

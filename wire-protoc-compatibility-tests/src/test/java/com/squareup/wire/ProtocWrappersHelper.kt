@@ -25,7 +25,7 @@ import com.google.protobuf.Int64Value
 import com.google.protobuf.StringValue
 import com.google.protobuf.UInt32Value
 import com.google.protobuf.UInt64Value
-import okio.ByteString
+import com.squareup.wire.shaded.okio.ByteString
 
 internal fun Double.toDoubleValue(): DoubleValue =
   DoubleValue.newBuilder().setValue(this).build()

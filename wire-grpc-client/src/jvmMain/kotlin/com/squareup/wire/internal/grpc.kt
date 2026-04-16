@@ -31,10 +31,10 @@ import okhttp3.MediaType
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.RequestBody
 import okhttp3.Response
-import okio.BufferedSink
-import okio.ByteString
-import okio.ByteString.Companion.decodeBase64
-import okio.IOException
+import com.squareup.wire.shaded.okio.BufferedSink
+import com.squareup.wire.shaded.okio.ByteString
+import com.squareup.wire.shaded.okio.ByteString.Companion.decodeBase64
+import com.squareup.wire.shaded.okio.IOException
 
 internal val APPLICATION_GRPC_MEDIA_TYPE: MediaType = "application/grpc".toMediaType()
 

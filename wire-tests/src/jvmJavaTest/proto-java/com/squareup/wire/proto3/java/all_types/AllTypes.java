@@ -31,7 +31,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import kotlin.Unit;
-import okio.ByteString;
+import com.squareup.wire.shaded.okio.ByteString;
 
 public final class AllTypes extends Message<AllTypes, AllTypes.Builder> {
   public static final ProtoAdapter<AllTypes> ADAPTER = new ProtoAdapter_AllTypes();

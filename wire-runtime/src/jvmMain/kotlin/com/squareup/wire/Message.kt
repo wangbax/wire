@@ -19,9 +19,9 @@ import java.io.IOException
 import java.io.ObjectStreamException
 import java.io.OutputStream
 import java.io.Serializable
-import okio.Buffer
-import okio.BufferedSink
-import okio.ByteString
+import com.squareup.wire.shaded.okio.Buffer
+import com.squareup.wire.shaded.okio.BufferedSink
+import com.squareup.wire.shaded.okio.ByteString
 
 /** A protocol buffer message. */
 actual abstract class Message<M : Message<M, B>, B : Message.Builder<M, B>>

@@ -38,11 +38,11 @@ import kotlin.Throws
 import com.squareup.wire.internal.and
 import com.squareup.wire.internal.shl
 import kotlin.jvm.JvmName
-import okio.Buffer
-import okio.BufferedSource
-import okio.ByteString
-import okio.EOFException
-import okio.IOException
+import com.squareup.wire.shaded.okio.Buffer
+import com.squareup.wire.shaded.okio.BufferedSource
+import com.squareup.wire.shaded.okio.ByteString
+import com.squareup.wire.shaded.okio.EOFException
+import com.squareup.wire.shaded.okio.IOException
 
 /**
  * Reads and decodes protocol message fields.

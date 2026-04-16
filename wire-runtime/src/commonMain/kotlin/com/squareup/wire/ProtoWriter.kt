@@ -50,9 +50,9 @@ package com.squareup.wire
 // OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
 import kotlin.Throws
-import okio.BufferedSink
-import okio.ByteString
-import okio.IOException
+import com.squareup.wire.shaded.okio.BufferedSink
+import com.squareup.wire.shaded.okio.ByteString
+import com.squareup.wire.shaded.okio.IOException
 
 /**
  * Utilities for encoding and writing protocol message fields.

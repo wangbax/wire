@@ -27,11 +27,11 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import okio.Buffer;
-import okio.ByteString;
-import okio.ForwardingSource;
-import okio.Okio;
-import okio.Source;
+import com.squareup.wire.shaded.okio.Buffer;
+import com.squareup.wire.shaded.okio.ByteString;
+import com.squareup.wire.shaded.okio.ForwardingSource;
+import com.squareup.wire.shaded.okio.Okio;
+import com.squareup.wire.shaded.okio.Source;
 import org.junit.Ignore;
 import org.junit.Test;
 

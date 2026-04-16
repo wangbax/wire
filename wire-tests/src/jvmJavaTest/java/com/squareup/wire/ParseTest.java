@@ -24,7 +24,7 @@ import com.squareup.wire.protos.edgecases.Recursive;
 import java.io.EOFException;
 import java.io.IOException;
 import java.net.ProtocolException;
-import okio.ByteString;
+import com.squareup.wire.shaded.okio.ByteString;
 import org.junit.Ignore;
 import org.junit.Test;
 

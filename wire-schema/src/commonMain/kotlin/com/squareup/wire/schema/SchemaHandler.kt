@@ -18,8 +18,8 @@ package com.squareup.wire.schema
 import com.squareup.wire.WireLogger
 import com.squareup.wire.internal.JvmDefaultWithCompatibility
 import com.squareup.wire.internal.Serializable
-import okio.FileSystem
-import okio.Path
+import com.squareup.wire.shaded.okio.FileSystem
+import com.squareup.wire.shaded.okio.Path
 
 /** A [SchemaHandler] [handle]s [Schema]! */
 abstract class SchemaHandler {

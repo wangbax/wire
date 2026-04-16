@@ -22,8 +22,8 @@ import com.squareup.wire.durationOfSeconds
 import com.squareup.wire.ofEpochSecond
 import kotlin.test.Ignore
 import kotlin.test.Test
-import okio.ByteString.Companion.encodeUtf8
-import okio.Path.Companion.toPath
+import com.squareup.wire.shaded.okio.ByteString.Companion.encodeUtf8
+import com.squareup.wire.shaded.okio.Path.Companion.toPath
 
 class DynamicSerializationTest {
   @Test

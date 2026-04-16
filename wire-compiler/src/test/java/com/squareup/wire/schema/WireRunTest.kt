@@ -36,9 +36,9 @@ import com.squareup.wire.testing.containsExactlyInAnyOrderAsRelativePaths
 import com.squareup.wire.testing.findFiles
 import com.squareup.wire.testing.readUtf8
 import kotlin.test.assertFailsWith
-import okio.Path
-import okio.Path.Companion.toPath
-import okio.fakefilesystem.FakeFileSystem
+import com.squareup.wire.shaded.okio.Path
+import com.squareup.wire.shaded.okio.Path.Companion.toPath
+import com.squareup.wire.shaded.okio.fakefilesystem.FakeFileSystem
 import org.junit.Assert.fail
 import org.junit.Test
 

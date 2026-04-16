@@ -22,7 +22,7 @@ import com.squareup.wire.schema.EventListener
 import com.squareup.wire.schema.Target
 import com.squareup.wire.schema.WireRun
 import javax.inject.Inject
-import okio.FileSystem
+import com.squareup.wire.shaded.okio.FileSystem
 import org.gradle.api.file.ConfigurableFileCollection
 import org.gradle.api.file.DirectoryProperty
 import org.gradle.api.file.FileTree

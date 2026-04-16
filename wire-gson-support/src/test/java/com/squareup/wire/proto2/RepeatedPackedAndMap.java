@@ -19,7 +19,7 @@ import java.lang.String;
 import java.lang.StringBuilder;
 import java.util.List;
 import java.util.Map;
-import okio.ByteString;
+import com.squareup.wire.shaded.okio.ByteString;
 
 public final class RepeatedPackedAndMap extends Message<RepeatedPackedAndMap, RepeatedPackedAndMap.Builder> {
   public static final ProtoAdapter<RepeatedPackedAndMap> ADAPTER = new ProtoAdapter_RepeatedPackedAndMap();

@@ -37,7 +37,7 @@ import kotlin.Unit
 import kotlin.collections.List
 import kotlin.collections.Map
 import kotlin.lazy
-import okio.ByteString
+import com.squareup.wire.shaded.okio.ByteString
 
 public class AllTypes(
   @field:WireField(
@@ -1858,7 +1858,7 @@ public class AllTypes(
         if (value.my_string != "") {
           size += ProtoAdapter.STRING.encodedSizeWithTag(14, value.my_string)
         }
-        if (value.my_bytes != okio.ByteString.EMPTY) {
+        if (value.my_bytes != com.squareup.wire.shaded.okio.ByteString.EMPTY) {
           size += ProtoAdapter.BYTES.encodedSizeWithTag(15, value.my_bytes)
         }
         if (value.nested_enum != com.squareup.wire.proto3.alltypes.AllTypes.NestedEnum.UNKNOWN) {
@@ -1966,7 +1966,7 @@ public class AllTypes(
         if (value.my_string != "") {
           ProtoAdapter.STRING.encodeWithTag(writer, 14, value.my_string)
         }
-        if (value.my_bytes != okio.ByteString.EMPTY) {
+        if (value.my_bytes != com.squareup.wire.shaded.okio.ByteString.EMPTY) {
           ProtoAdapter.BYTES.encodeWithTag(writer, 15, value.my_bytes)
         }
         if (value.nested_enum != com.squareup.wire.proto3.alltypes.AllTypes.NestedEnum.UNKNOWN) {
@@ -2092,7 +2092,7 @@ public class AllTypes(
         if (value.nested_enum != com.squareup.wire.proto3.alltypes.AllTypes.NestedEnum.UNKNOWN) {
           NestedEnum.ADAPTER.encodeWithTag(writer, 16, value.nested_enum)
         }
-        if (value.my_bytes != okio.ByteString.EMPTY) {
+        if (value.my_bytes != com.squareup.wire.shaded.okio.ByteString.EMPTY) {
           ProtoAdapter.BYTES.encodeWithTag(writer, 15, value.my_bytes)
         }
         if (value.my_string != "") {

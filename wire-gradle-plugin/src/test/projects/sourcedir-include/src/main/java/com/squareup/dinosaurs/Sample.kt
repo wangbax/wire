@@ -17,7 +17,7 @@ package com.squareup.dinosaurs
 
 import com.squareup.geology.Period
 import java.io.IOException
-import okio.ByteString.Companion.toByteString
+import com.squareup.wire.shaded.okio.ByteString.Companion.toByteString
 
 class Sample {
   @Throws(IOException::class)

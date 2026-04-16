@@ -24,7 +24,7 @@ import kotlin.Long
 import kotlin.Nothing
 import kotlin.String
 import kotlin.Suppress
-import okio.ByteString
+import com.squareup.wire.shaded.okio.ByteString
 
 /**
  * This message is to be generated in Kotlin but the options' annotations are to be generated in

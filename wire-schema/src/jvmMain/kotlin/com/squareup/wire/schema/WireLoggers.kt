@@ -16,7 +16,7 @@
 package com.squareup.wire.schema
 
 import com.squareup.wire.WireLogger
-import okio.Path
+import com.squareup.wire.shaded.okio.Path
 
 /**
  * Create and return an instance of [WireLogger.Factory].

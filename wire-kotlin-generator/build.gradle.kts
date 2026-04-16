@@ -6,8 +6,8 @@ plugins {
 
 dependencies {
   api(projects.wireSchema)
+  implementation(projects.wireGrpcApi)
   implementation(projects.wireRuntime)
-  implementation(projects.wireGrpcClient)
   implementation(libs.okio.core)
   api(libs.kotlinpoet)
   testImplementation(projects.wireTestUtils)

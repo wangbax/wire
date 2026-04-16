@@ -30,7 +30,7 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 import java.util.Collections;
 import java.util.List;
-import okio.ByteString;
+import com.squareup.wire.shaded.okio.ByteString;
 
 public final class FooBar extends Message<FooBar, FooBar.Builder> {
   public static final ProtoAdapter<FooBar> ADAPTER = new ProtoAdapter_FooBar();

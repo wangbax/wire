@@ -17,7 +17,7 @@ package com.squareup.wire
 
 import com.squareup.wire.internal.Serializable
 import com.squareup.wire.schema.ProtoType
-import okio.Path
+import com.squareup.wire.shaded.okio.Path
 
 /**
  * Logger class used by [WireRun][com.squareup.wire.schema.WireRun] and

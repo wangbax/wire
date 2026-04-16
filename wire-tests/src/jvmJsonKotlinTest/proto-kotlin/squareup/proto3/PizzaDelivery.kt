@@ -34,7 +34,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.collections.List
 import kotlin.collections.Map
-import okio.ByteString
+import com.squareup.wire.shaded.okio.ByteString
 
 public class PizzaDelivery(
   @field:WireField(

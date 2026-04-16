@@ -12,7 +12,7 @@ import java.lang.Object;
 import java.lang.Override;
 import java.util.List;
 import java.util.Map;
-import okio.ByteString;
+import com.squareup.wire.shaded.okio.ByteString;
 
 public final class All64 extends Message<All64, All64.Builder> {
   public static final ProtoAdapter<All64> ADAPTER = ProtoAdapter.newMessageAdapter(All64.class, "type.googleapis.com/squareup.proto3.All64", Syntax.PROTO_3);

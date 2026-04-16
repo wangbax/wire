@@ -17,8 +17,8 @@ package com.squareup.wire
 
 import kotlin.test.Test
 import kotlin.test.assertEquals
-import okio.Buffer
-import okio.utf8Size
+import com.squareup.wire.shaded.okio.Buffer
+import com.squareup.wire.shaded.okio.utf8Size
 
 class ProtoWriterTest {
   @Test fun utf8() {

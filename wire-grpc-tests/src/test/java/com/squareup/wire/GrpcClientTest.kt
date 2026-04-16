@@ -66,11 +66,11 @@ import okhttp3.Request
 import okhttp3.Response
 import okhttp3.ResponseBody
 import okhttp3.ResponseBody.Companion.toResponseBody
-import okio.Buffer
-import okio.ByteString
-import okio.ForwardingSource
-import okio.IOException
-import okio.buffer
+import com.squareup.wire.shaded.okio.Buffer
+import com.squareup.wire.shaded.okio.ByteString
+import com.squareup.wire.shaded.okio.ForwardingSource
+import com.squareup.wire.shaded.okio.IOException
+import com.squareup.wire.shaded.okio.buffer
 import org.junit.After
 import org.junit.Assert.assertThrows
 import org.junit.Assert.fail

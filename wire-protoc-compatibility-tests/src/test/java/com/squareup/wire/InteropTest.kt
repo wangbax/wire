@@ -16,8 +16,8 @@
 package com.squareup.wire
 
 import com.google.protobuf.Duration
-import okio.ByteString
-import okio.ByteString.Companion.decodeHex
+import com.squareup.wire.shaded.okio.ByteString
+import com.squareup.wire.shaded.okio.ByteString.Companion.decodeHex
 import org.junit.Ignore
 import org.junit.Test
 import squareup.proto2.java.interop.InteropBoxOneOf as InteropBoxOneOfJ2

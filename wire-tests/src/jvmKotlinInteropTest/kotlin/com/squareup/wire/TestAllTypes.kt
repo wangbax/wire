@@ -22,11 +22,11 @@ import com.squareup.wire.protos.kotlin.alltypes.AllTypes
 import java.io.ByteArrayInputStream
 import java.io.ByteArrayOutputStream
 import kotlin.math.min
-import okio.Buffer
-import okio.ByteString
-import okio.ForwardingSource
-import okio.Source
-import okio.buffer
+import com.squareup.wire.shaded.okio.Buffer
+import com.squareup.wire.shaded.okio.ByteString
+import com.squareup.wire.shaded.okio.ForwardingSource
+import com.squareup.wire.shaded.okio.Source
+import com.squareup.wire.shaded.okio.buffer
 import org.junit.Test
 
 class TestAllTypes {

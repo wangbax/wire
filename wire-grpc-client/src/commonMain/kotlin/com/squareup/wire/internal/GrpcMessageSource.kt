@@ -17,9 +17,9 @@ package com.squareup.wire.internal
 
 import com.squareup.wire.MessageSource
 import com.squareup.wire.ProtoAdapter
-import okio.Buffer
-import okio.BufferedSource
-import okio.buffer
+import com.squareup.wire.shaded.okio.Buffer
+import com.squareup.wire.shaded.okio.BufferedSource
+import com.squareup.wire.shaded.okio.buffer
 
 /**
  * Reads an HTTP/2 stream as a sequence of gRPC messages.

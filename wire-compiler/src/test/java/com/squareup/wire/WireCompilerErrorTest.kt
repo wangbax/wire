@@ -21,9 +21,9 @@ import assertk.assertions.doesNotContain
 import assertk.assertions.hasMessage
 import com.squareup.wire.schema.SchemaException
 import kotlin.test.assertFailsWith
-import okio.Path
-import okio.Path.Companion.toPath
-import okio.fakefilesystem.FakeFileSystem
+import com.squareup.wire.shaded.okio.Path
+import com.squareup.wire.shaded.okio.Path.Companion.toPath
+import com.squareup.wire.shaded.okio.fakefilesystem.FakeFileSystem
 import org.junit.Test
 
 class WireCompilerErrorTest {

@@ -26,8 +26,8 @@ import com.squareup.wire.schema.SchemaLoader
 import java.io.File
 import java.io.IOException
 import java.nio.file.FileSystems
-import okio.buffer
-import okio.sink
+import com.squareup.wire.shaded.okio.buffer
+import com.squareup.wire.shaded.okio.sink
 import org.junit.Rule
 import org.junit.Test
 import org.junit.rules.TemporaryFolder

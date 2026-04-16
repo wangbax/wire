@@ -15,7 +15,7 @@ import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.util.List;
-import okio.ByteString;
+import com.squareup.wire.shaded.okio.ByteString;
 
 public final class Person extends AndroidMessage<Person, Person.Builder> {
   public static final ProtoAdapter<Person> ADAPTER = ProtoAdapter.newMessageAdapter(Person.class, "type.googleapis.com/squareup.protos.person.Person", Syntax.PROTO_2);

@@ -15,7 +15,7 @@
  */
 package com.squareup.wire;
 
-import okio.ByteString;
+import com.squareup.wire.shaded.okio.ByteString;
 
 class TestAllTypesData {
 

@@ -25,7 +25,7 @@ import java.lang.String;
 import java.lang.StringBuilder;
 import java.util.List;
 import java.util.Map;
-import okio.ByteString;
+import com.squareup.wire.shaded.okio.ByteString;
 
 public final class AllTypes extends Message<AllTypes, AllTypes.Builder> {
   public static final ProtoAdapter<AllTypes> ADAPTER = new ProtoAdapter_AllTypes();

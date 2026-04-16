@@ -15,7 +15,7 @@ import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.StringBuilder;
-import okio.ByteString;
+import com.squareup.wire.shaded.okio.ByteString;
 
 @MyMessageOptionTwoOption(91011.0f)
 @MyMessageOptionFourOption(FooBar.FooBarBazEnum.FOO)

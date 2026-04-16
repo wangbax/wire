@@ -25,8 +25,8 @@ import com.squareup.wire.testing.containsExactlyInAnyOrderAsRelativePaths
 import com.squareup.wire.testing.findFiles
 import com.squareup.wire.testing.readUtf8
 import kotlin.test.Test
-import okio.Path.Companion.toPath
-import okio.fakefilesystem.FakeFileSystem
+import com.squareup.wire.shaded.okio.Path.Companion.toPath
+import com.squareup.wire.shaded.okio.fakefilesystem.FakeFileSystem
 
 class MarkdownHandlerTest {
   @Test fun markdownHandlerGenerates() {

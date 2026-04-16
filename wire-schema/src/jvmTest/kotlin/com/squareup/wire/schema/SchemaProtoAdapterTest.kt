@@ -21,13 +21,13 @@ import assertk.assertions.isEqualTo
 import com.squareup.wire.buildSchema
 import kotlin.test.Test
 import kotlin.test.fail
-import okio.Buffer
-import okio.ByteString.Companion.decodeHex
-import okio.ByteString.Companion.toByteString
-import okio.EOFException
-import okio.IOException
-import okio.Path.Companion.toPath
-import okio.ProtocolException
+import com.squareup.wire.shaded.okio.Buffer
+import com.squareup.wire.shaded.okio.ByteString.Companion.decodeHex
+import com.squareup.wire.shaded.okio.ByteString.Companion.toByteString
+import com.squareup.wire.shaded.okio.EOFException
+import com.squareup.wire.shaded.okio.IOException
+import com.squareup.wire.shaded.okio.Path.Companion.toPath
+import com.squareup.wire.shaded.okio.ProtocolException
 
 class SchemaProtoAdapterTest {
   private val coffeeSchema = buildSchema {

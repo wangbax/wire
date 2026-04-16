@@ -27,12 +27,12 @@ import com.squareup.wire.ProtoWriter.Companion.varint32Size
 import com.squareup.wire.ProtoWriter.Companion.varint64Size
 import com.squareup.wire.internal.JvmStatic
 import kotlin.reflect.KClass
-import okio.Buffer
-import okio.BufferedSink
-import okio.BufferedSource
-import okio.ByteString
-import okio.IOException
-import okio.utf8Size
+import com.squareup.wire.shaded.okio.Buffer
+import com.squareup.wire.shaded.okio.BufferedSink
+import com.squareup.wire.shaded.okio.BufferedSource
+import com.squareup.wire.shaded.okio.ByteString
+import com.squareup.wire.shaded.okio.IOException
+import com.squareup.wire.shaded.okio.utf8Size
 
 expect abstract class ProtoAdapter<E>(
   fieldEncoding: FieldEncoding,

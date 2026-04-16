@@ -29,8 +29,8 @@ import kotlinx.coroutines.channels.SendChannel
 import kotlinx.coroutines.channels.onClosed
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
-import okio.IOException
-import okio.Timeout
+import com.squareup.wire.shaded.okio.IOException
+import com.squareup.wire.shaded.okio.Timeout
 
 /**
  * Returns a new instance of [GrpcCall] that can be used for a single call to

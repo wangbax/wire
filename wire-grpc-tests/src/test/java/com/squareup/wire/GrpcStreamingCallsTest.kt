@@ -28,7 +28,7 @@ import kotlinx.coroutines.channels.ReceiveChannel
 import kotlinx.coroutines.channels.SendChannel
 import kotlinx.coroutines.channels.consumeEach
 import kotlinx.coroutines.runBlocking
-import okio.IOException
+import com.squareup.wire.shaded.okio.IOException
 import org.junit.Assert.fail
 import org.junit.Test
 

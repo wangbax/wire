@@ -19,7 +19,7 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.StringBuilder;
 import java.util.List;
-import okio.ByteString;
+import com.squareup.wire.shaded.okio.ByteString;
 
 public final class Dinosaur extends Message<Dinosaur, Dinosaur.Builder> {
   public static final ProtoAdapter<Dinosaur> ADAPTER = new ProtoAdapter_Dinosaur();

@@ -20,10 +20,10 @@ import com.squareup.wire.ProtoWriter
 import com.squareup.wire.ReverseProtoWriter
 import com.squareup.wire.WireJsonAdapterFactory
 import java.util.concurrent.TimeUnit
-import okio.Buffer
-import okio.BufferedSource
-import okio.FileSystem
-import okio.Path.Companion.toPath
+import com.squareup.wire.shaded.okio.Buffer
+import com.squareup.wire.shaded.okio.BufferedSource
+import com.squareup.wire.shaded.okio.FileSystem
+import com.squareup.wire.shaded.okio.Path.Companion.toPath
 import org.openjdk.jmh.annotations.Benchmark
 import org.openjdk.jmh.annotations.BenchmarkMode
 import org.openjdk.jmh.annotations.Fork

@@ -15,12 +15,12 @@
  */
 package com.squareup.wire
 
-import okio.FileHandle
-import okio.FileSystem
-import okio.ForwardingFileSystem
-import okio.Path
-import okio.Sink
-import okio.fakefilesystem.FakeFileSystem
+import com.squareup.wire.shaded.okio.FileHandle
+import com.squareup.wire.shaded.okio.FileSystem
+import com.squareup.wire.shaded.okio.ForwardingFileSystem
+import com.squareup.wire.shaded.okio.Path
+import com.squareup.wire.shaded.okio.Sink
+import com.squareup.wire.shaded.okio.fakefilesystem.FakeFileSystem
 
 /**
  * This [FileSystem] reads from its [delegate] but its writing operations do not produce anything.

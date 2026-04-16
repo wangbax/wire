@@ -16,7 +16,7 @@ import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.StringBuilder;
-import okio.ByteString;
+import com.squareup.wire.shaded.okio.ByteString;
 
 public final class RedactedCycleA extends Message<RedactedCycleA, RedactedCycleA.Builder> {
   public static final ProtoAdapter<RedactedCycleA> ADAPTER = new ProtoAdapter_RedactedCycleA();

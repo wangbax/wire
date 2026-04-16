@@ -21,8 +21,8 @@ import com.squareup.wire.Syntax
 import java.lang.reflect.Type
 import java.math.BigDecimal
 import java.math.BigInteger
-import okio.ByteString
-import okio.ByteString.Companion.decodeBase64
+import com.squareup.wire.shaded.okio.ByteString
+import com.squareup.wire.shaded.okio.ByteString.Companion.decodeBase64
 
 /**
  * Integrates a JSON library like Moshi or Gson into proto. This rigid interface attempts to make it

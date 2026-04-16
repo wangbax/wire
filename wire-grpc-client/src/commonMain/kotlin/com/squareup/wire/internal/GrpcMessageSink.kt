@@ -17,8 +17,8 @@ package com.squareup.wire.internal
 
 import com.squareup.wire.MessageSink
 import com.squareup.wire.ProtoAdapter
-import okio.Buffer
-import okio.BufferedSink
+import com.squareup.wire.shaded.okio.Buffer
+import com.squareup.wire.shaded.okio.BufferedSink
 
 /**
  * Writes a sequence of gRPC messages as an HTTP/2 stream.

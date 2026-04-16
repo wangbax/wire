@@ -24,7 +24,7 @@ import java.util.concurrent.LinkedBlockingQueue
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.ObsoleteCoroutinesApi
 import kotlinx.coroutines.runBlocking
-import okio.IOException
+import com.squareup.wire.shaded.okio.IOException
 import org.junit.Assert.fail
 import org.junit.Test
 

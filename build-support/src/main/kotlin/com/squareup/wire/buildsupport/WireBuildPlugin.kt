@@ -16,9 +16,15 @@
 package com.squareup.wire.buildsupport
 
 import com.android.build.gradle.BaseExtension
+import com.vanniktech.maven.publish.GradlePublishPlugin
+import com.vanniktech.maven.publish.JavaPlatform
+import com.vanniktech.maven.publish.JavadocJar
+import com.vanniktech.maven.publish.KotlinJvm
+import com.vanniktech.maven.publish.KotlinMultiplatform
 import com.diffplug.gradle.spotless.SpotlessExtension
 import com.diffplug.spotless.LineEnding
 import com.vanniktech.maven.publish.MavenPublishBaseExtension
+import com.vanniktech.maven.publish.SonatypeHost
 import java.io.File
 import kotlinx.validation.ApiValidationExtension
 import kotlinx.validation.ExperimentalBCVApi
@@ -49,23 +55,13 @@ private val PROJECT_TO_PUBLISH = listOf(
   "wire-bom",
   "wire-compiler",
   "wire-gradle-plugin",
-  "wire-grpc-client",
-  "wire-grpc-client-jvm-shaded",
-  "wire-grpc-mockwebserver",
-  "wire-grpc-mockwebserver-jvm-shaded",
+  "wire-grpc-api",
   "wire-gson-support",
-  "wire-gson-support-jvm-shaded",
   "wire-java-generator",
   "wire-kotlin-generator",
   "wire-moshi-adapter",
-  "wire-moshi-adapter-jvm-shaded",
-  "wire-reflector",
   "wire-runtime",
-  "wire-runtime-jvm-shaded",
-  "wire-runtime-swift",
   "wire-schema",
-  "wire-schema-tests",
-  "wire-swift-generator",
 )
 
 @Suppress("unused") // Invoked reflectively by Gradle.
@@ -308,44 +304,47 @@ private class WireBuildExtensionImpl(private val project: Project) : WireBuildEx
 
     val mavenPublishing = project.extensions.getByName("mavenPublishing") as MavenPublishBaseExtension
     mavenPublishing.apply {
-      // The Gradle plugin publish plugin configures `wire-gradle-plugin` for us, and we don't need
-      // to configure `wire-bom`.
-      if (!project.isWireGradlePlugin && !project.isWireBom) {
-        // TODO(Benoit) Fix, this is failing with
-        //  `SoftwareComponent with name 'java' not found.`
-        // configure(KotlinJvm(javadocJar = Dokka("dokkaHtml"), sourcesJar = true))
+      when {
+        project.plugins.hasPlugin("com.gradle.plugin-publish") -> {
+          configure(GradlePublishPlugin())
+        }
+        project.plugins.hasPlugin("java-platform") -> {
+          configure(JavaPlatform())
+        }
+        project.plugins.hasPlugin("org.jetbrains.kotlin.multiplatform") -> {
+          configure(
+            KotlinMultiplatform(
+              javadocJar = JavadocJar.Empty(),
+              sourcesJar = true,
+            ),
+          )
+        }
+        project.plugins.hasPlugin("org.jetbrains.kotlin.jvm") -> {
+          configure(
+            KotlinJvm(
+              javadocJar = JavadocJar.Empty(),
+              sourcesJar = true,
+            ),
+          )
+        }
       }
 
-      publishToMavenCentral(automaticRelease = true)
+      publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL, automaticRelease = true)
       val inMemoryKey = project.findProperty("signingInMemoryKey") as String?
-      val hasFileBasedSigning = listOf(
-        "signing.keyId",
-        "signing.password",
-        "signing.secretKeyRingFile",
-      ).all { !(project.findProperty(it) as String?).isNullOrBlank() }
-      if (!inMemoryKey.isNullOrEmpty() || hasFileBasedSigning) {
+      val signingKeyId = project.findProperty("signing.keyId") as String?
+      val signingSecretKeyRingFile = project.findProperty("signing.secretKeyRingFile") as String?
+      if (!inMemoryKey.isNullOrEmpty() ||
+        !signingKeyId.isNullOrEmpty() ||
+        !signingSecretKeyRingFile.isNullOrEmpty()
+      ) {
         signAllPublications()
       }
-
-      val pomUrl = project.gradlePropertyOrDefault("WIRE_POM_URL", "https://github.com/square/wire/")
-      val pomScmUrl = project.gradlePropertyOrDefault("WIRE_POM_SCM_URL", pomUrl)
-      val pomScmConnection = project.gradlePropertyOrDefault(
-        "WIRE_POM_SCM_CONNECTION",
-        "scm:git:https://github.com/square/wire.git",
-      )
-      val pomScmDeveloperConnection = project.gradlePropertyOrDefault(
-        "WIRE_POM_SCM_DEV_CONNECTION",
-        "scm:git:ssh://git@github.com/square/wire.git",
-      )
-      val pomDeveloperId = project.gradlePropertyOrDefault("WIRE_POM_DEVELOPER_ID", "cashapp")
-      val pomDeveloperName = project.gradlePropertyOrDefault("WIRE_POM_DEVELOPER_NAME", "CashApp")
-      val pomDeveloperUrl = project.gradlePropertyOrDefault("WIRE_POM_DEVELOPER_URL", "https://github.com/cashapp")
 
       pom {
         name.set(project.name)
         description.set("gRPC and protocol buffers for Android, Kotlin, and Java.")
         inceptionYear.set("2017")
-        url.set(pomUrl)
+        url.set("https://github.com/wangbax/wire/")
 
         licenses {
           license {
@@ -357,16 +356,16 @@ private class WireBuildExtensionImpl(private val project: Project) : WireBuildEx
 
         developers {
           developer {
-            id.set(pomDeveloperId)
-            name.set(pomDeveloperName)
-            url.set(pomDeveloperUrl)
+            id.set("wangbax")
+            name.set("wangbax")
+            url.set("https://github.com/wangbax")
           }
         }
 
         scm {
-          url.set(pomScmUrl)
-          connection.set(pomScmConnection)
-          developerConnection.set(pomScmDeveloperConnection)
+          url.set("https://github.com/wangbax/wire/")
+          connection.set("scm:git:https://github.com/wangbax/wire.git")
+          developerConnection.set("scm:git:ssh://git@github.com/wangbax/wire.git")
         }
       }
     }
@@ -398,8 +397,4 @@ private class WireBuildExtensionImpl(private val project: Project) : WireBuildEx
 
   private val Project.isWireBom
     get() = name.contains("wire-bom")
-
-  private fun Project.gradlePropertyOrDefault(name: String, defaultValue: String): String {
-    return providers.gradleProperty(name).orNull ?: defaultValue
-  }
 }

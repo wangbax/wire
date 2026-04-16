@@ -17,7 +17,7 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.StringBuilder;
 import java.util.List;
-import okio.ByteString;
+import com.squareup.wire.shaded.okio.ByteString;
 
 public final class Bars extends Message<Bars, Bars.Builder> {
   public static final ProtoAdapter<Bars> ADAPTER = new ProtoAdapter_Bars();

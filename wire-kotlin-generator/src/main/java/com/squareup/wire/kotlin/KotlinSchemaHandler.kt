@@ -28,7 +28,7 @@ import com.squareup.wire.schema.SchemaHandler
 import com.squareup.wire.schema.Service
 import com.squareup.wire.schema.Type
 import java.io.IOException
-import okio.Path
+import com.squareup.wire.shaded.okio.Path
 
 class KotlinSchemaHandler(
   private val outDirectory: String,
@@ -106,9 +106,6 @@ class KotlinSchemaHandler(
    * critical usages.
    */
   private val makeImmutableCopies: Boolean = true,
-
-  /** Package name used for generated Okio references such as ByteString. */
-  private val okioPackage: String = KotlinGenerator.DEFAULT_OKIO_PACKAGE,
 ) : SchemaHandler() {
   private lateinit var kotlinGenerator: KotlinGenerator
 
@@ -133,7 +130,6 @@ class KotlinSchemaHandler(
       mutableTypes = mutableTypes,
       explicitStreamingCalls = explicitStreamingCalls,
       makeImmutableCopies = makeImmutableCopies,
-      okioPackage = okioPackage,
     )
     context.fileSystem.createDirectories(context.outDirectory)
     super.handle(schema, context)

@@ -17,7 +17,7 @@ import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.StringBuilder;
-import okio.ByteString;
+import com.squareup.wire.shaded.okio.ByteString;
 
 public final class D extends Message<D, D.Builder> {
   public static final ProtoAdapter<D> ADAPTER = new ProtoAdapter_D();

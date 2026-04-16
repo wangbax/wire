@@ -13,7 +13,7 @@ import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.util.Map;
-import okio.ByteString;
+import com.squareup.wire.shaded.okio.ByteString;
 
 public final class MapTypes extends Message<MapTypes, MapTypes.Builder> {
   public static final ProtoAdapter<MapTypes> ADAPTER = ProtoAdapter.newMessageAdapter(MapTypes.class, "type.googleapis.com/squareup.proto3.MapTypes", Syntax.PROTO_3);

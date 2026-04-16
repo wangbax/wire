@@ -16,8 +16,8 @@
 package com.squareup.wire.internal
 
 import com.squareup.wire.GrpcResponse
-import okio.Sink
-import okio.Source
+import com.squareup.wire.shaded.okio.Sink
+import com.squareup.wire.shaded.okio.Source
 
 internal actual interface Call {
   actual fun cancel()
