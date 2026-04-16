@@ -17,9 +17,9 @@ package com.squareup.wire.schema
 
 import com.squareup.wire.SchemaBuilder
 import java.io.File
-import okio.Path
-import okio.buffer
-import okio.source
+import com.squareup.wire.shaded.okio.Path
+import com.squareup.wire.shaded.okio.buffer
+import com.squareup.wire.shaded.okio.source
 
 /** This will read the content of [path] and add it to the [SchemaBuilder]. */
 fun SchemaBuilder.addLocal(path: Path): SchemaBuilder {

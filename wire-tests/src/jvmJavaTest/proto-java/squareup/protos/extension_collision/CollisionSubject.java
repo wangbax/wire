@@ -16,7 +16,7 @@ import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.StringBuilder;
-import okio.ByteString;
+import com.squareup.wire.shaded.okio.ByteString;
 import squareup.protos.extension_collision_1.AOption;
 import squareup.protos.extension_collision_1.BOption;
 import squareup.protos.extension_collision_2.COption;

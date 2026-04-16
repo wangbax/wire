@@ -16,8 +16,8 @@
 package com.squareup.wire
 
 import com.squareup.wire.protos.kotlin.alltypes.AllTypes
-import okio.ByteString
-import okio.ByteString.Companion.decodeHex
+import com.squareup.wire.shaded.okio.ByteString
+import com.squareup.wire.shaded.okio.ByteString.Companion.decodeHex
 
 object TestAllTypesData {
 

@@ -17,7 +17,7 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.StringBuilder;
 import java.util.Map;
-import okio.ByteString;
+import com.squareup.wire.shaded.okio.ByteString;
 
 public final class Mappy extends Message<Mappy, Mappy.Builder> {
   public static final ProtoAdapter<Mappy> ADAPTER = new ProtoAdapter_Mappy();

@@ -16,7 +16,7 @@ import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.StringBuilder;
-import okio.ByteString;
+import com.squareup.wire.shaded.okio.ByteString;
 
 public final class NotRedacted extends Message<NotRedacted, NotRedacted.Builder> {
   public static final ProtoAdapter<NotRedacted> ADAPTER = new ProtoAdapter_NotRedacted();

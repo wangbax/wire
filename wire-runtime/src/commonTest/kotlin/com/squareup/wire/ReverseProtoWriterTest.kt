@@ -20,9 +20,9 @@ import com.squareup.wire.ProtoAdapter.Companion.newMapAdapter
 import com.squareup.wire.Syntax.PROTO_2
 import kotlin.test.Test
 import kotlin.test.assertEquals
-import okio.Buffer
-import okio.ByteString.Companion.encodeUtf8
-import okio.utf8Size
+import com.squareup.wire.shaded.okio.Buffer
+import com.squareup.wire.shaded.okio.ByteString.Companion.encodeUtf8
+import com.squareup.wire.shaded.okio.utf8Size
 
 class ReverseProtoWriterTest {
   @Test fun utf8() {

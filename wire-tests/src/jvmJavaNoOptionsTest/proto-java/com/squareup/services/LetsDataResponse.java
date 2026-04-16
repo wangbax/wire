@@ -16,7 +16,7 @@ import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.StringBuilder;
-import okio.ByteString;
+import com.squareup.wire.shaded.okio.ByteString;
 
 public final class LetsDataResponse extends Message<LetsDataResponse, LetsDataResponse.Builder> {
   public static final ProtoAdapter<LetsDataResponse> ADAPTER = new ProtoAdapter_LetsDataResponse();

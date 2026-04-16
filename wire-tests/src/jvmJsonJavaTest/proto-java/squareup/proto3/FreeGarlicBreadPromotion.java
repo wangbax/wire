@@ -10,7 +10,7 @@ import com.squareup.wire.internal.Internal;
 import java.lang.Boolean;
 import java.lang.Object;
 import java.lang.Override;
-import okio.ByteString;
+import com.squareup.wire.shaded.okio.ByteString;
 
 public final class FreeGarlicBreadPromotion extends Message<FreeGarlicBreadPromotion, FreeGarlicBreadPromotion.Builder> {
   public static final ProtoAdapter<FreeGarlicBreadPromotion> ADAPTER = ProtoAdapter.newMessageAdapter(FreeGarlicBreadPromotion.class, "type.googleapis.com/squareup.proto3.FreeGarlicBreadPromotion", Syntax.PROTO_3);

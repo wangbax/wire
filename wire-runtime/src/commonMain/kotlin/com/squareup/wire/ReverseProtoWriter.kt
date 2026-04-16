@@ -19,10 +19,10 @@ import com.squareup.wire.ProtoWriter.Companion.varint32Size
 import com.squareup.wire.ProtoWriter.Companion.varint64Size
 import kotlin.LazyThreadSafetyMode.NONE
 import kotlin.Throws
-import okio.Buffer
-import okio.BufferedSink
-import okio.ByteString
-import okio.IOException
+import com.squareup.wire.shaded.okio.Buffer
+import com.squareup.wire.shaded.okio.BufferedSink
+import com.squareup.wire.shaded.okio.ByteString
+import com.squareup.wire.shaded.okio.IOException
 
 /**
  * Encodes protocol buffer message fields from back-to-front for efficiency. Callers should write

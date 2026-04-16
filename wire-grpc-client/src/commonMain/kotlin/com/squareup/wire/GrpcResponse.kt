@@ -18,7 +18,7 @@
 package com.squareup.wire
 
 import kotlin.jvm.JvmName
-import okio.IOException
+import com.squareup.wire.shaded.okio.IOException
 
 internal expect class GrpcResponse {
   @get:JvmName("body")

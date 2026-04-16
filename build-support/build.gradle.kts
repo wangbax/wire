@@ -14,6 +14,9 @@ buildscript {
   }
 
   repositories {
+    if (System.getProperty("useMavenLocal", "false").toBoolean()) {
+      mavenLocal()
+    }
     mavenCentral()
     gradlePluginPortal()
     google()
@@ -27,6 +30,9 @@ plugins {
 }
 
 repositories {
+  if (System.getProperty("useMavenLocal", "false").toBoolean()) {
+    mavenLocal()
+  }
   mavenCentral()
   google()
   gradlePluginPortal()
@@ -64,6 +70,9 @@ gradlePlugin {
 
 allprojects {
   repositories {
+    if (System.getProperty("useMavenLocal", "false").toBoolean()) {
+      mavenLocal()
+    }
     mavenCentral()
     google()
   }

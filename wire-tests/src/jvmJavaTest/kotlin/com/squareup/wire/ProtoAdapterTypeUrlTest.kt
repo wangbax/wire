@@ -24,7 +24,7 @@ import com.squareup.wire.protos.person.Person.PhoneType
 import java.lang.reflect.Modifier
 import kotlin.reflect.KClass
 import kotlin.test.Test
-import okio.ByteString
+import com.squareup.wire.shaded.okio.ByteString
 
 class ProtoAdapterTypeUrlTest {
   @Test fun allBuiltInAdaptersHaveReasonableTypeUrls() {

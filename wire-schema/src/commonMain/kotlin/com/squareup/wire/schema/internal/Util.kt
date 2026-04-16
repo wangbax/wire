@@ -24,8 +24,8 @@ import com.squareup.wire.schema.Schema
 import com.squareup.wire.schema.Service
 import com.squareup.wire.schema.Type
 import com.squareup.wire.schema.internal.parser.OptionElement
-import okio.Path
-import okio.Path.Companion.toPath
+import com.squareup.wire.shaded.okio.Path
+import com.squareup.wire.shaded.okio.Path.Companion.toPath
 
 // TODO internal and friend for wire-java-generator: https://youtrack.jetbrains.com/issue/KT-34102
 fun StringBuilder.appendDocumentation(

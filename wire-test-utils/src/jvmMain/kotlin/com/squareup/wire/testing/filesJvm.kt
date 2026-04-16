@@ -21,11 +21,11 @@ import java.nio.charset.Charset
 import java.util.zip.ZipEntry
 import java.util.zip.ZipOutputStream
 import kotlin.text.Charsets.UTF_8
-import okio.ByteString
-import okio.FileSystem
-import okio.Path.Companion.toPath
-import okio.buffer
-import okio.sink
+import com.squareup.wire.shaded.okio.ByteString
+import com.squareup.wire.shaded.okio.FileSystem
+import com.squareup.wire.shaded.okio.Path.Companion.toPath
+import com.squareup.wire.shaded.okio.buffer
+import com.squareup.wire.shaded.okio.sink
 
 fun FileSystem.add(
   pathString: String,

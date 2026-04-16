@@ -20,7 +20,7 @@ import static org.junit.Assert.assertEquals;
 
 import com.squareup.wire.protos.person.Person;
 import java.io.IOException;
-import okio.ByteString;
+import com.squareup.wire.shaded.okio.ByteString;
 import org.junit.Test;
 import squareup.protos.packed_encoding.EmbeddedMessage;
 import squareup.protos.packed_encoding.OuterMessage;

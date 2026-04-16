@@ -39,9 +39,7 @@ kotlin {
   sourceSets {
     val commonMain by getting {
       dependencies {
-        api(projects.wireRuntime)
-        api(libs.okio.core)
-        api(libs.kotlin.coroutines.core)
+        api(projects.wireGrpcApi)
       }
     }
     val jvmMain by getting {

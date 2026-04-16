@@ -16,7 +16,7 @@
 package com.squareup.wire
 
 import kotlin.collections.set
-import okio.ByteString
+import com.squareup.wire.shaded.okio.ByteString
 
 internal class KotlinConstructorBuilder<M : Message<M, B>, B : Message.Builder<M, B>>(
   private val messageType: Class<M>,

@@ -18,7 +18,7 @@ package com.squareup.wire
 import android.os.Parcel
 import android.os.Parcelable
 import java.lang.reflect.Array.newInstance
-import okio.ByteString
+import com.squareup.wire.shaded.okio.ByteString
 
 /** An Android-specific [Message] which adds support for [Parcelable]. */
 abstract class AndroidMessage<M : Message<M, B>, B : Message.Builder<M, B>> protected constructor(

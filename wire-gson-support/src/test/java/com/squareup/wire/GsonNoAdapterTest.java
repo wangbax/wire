@@ -23,7 +23,7 @@ import com.squareup.wire.proto2.dinosaurs.java.Dinosaur;
 import com.squareup.wire.proto2.geology.java.Period;
 import java.util.Arrays;
 import java.util.Collections;
-import okio.ByteString;
+import com.squareup.wire.shaded.okio.ByteString;
 import org.junit.Ignore;
 import org.junit.Test;
 

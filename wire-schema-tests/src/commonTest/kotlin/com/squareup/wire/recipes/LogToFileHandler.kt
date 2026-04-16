@@ -20,10 +20,10 @@ import com.squareup.wire.schema.Field
 import com.squareup.wire.schema.SchemaHandler
 import com.squareup.wire.schema.Service
 import com.squareup.wire.schema.Type
-import okio.Path
-import okio.Path.Companion.toPath
-import okio.buffer
-import okio.use
+import com.squareup.wire.shaded.okio.Path
+import com.squareup.wire.shaded.okio.Path.Companion.toPath
+import com.squareup.wire.shaded.okio.buffer
+import com.squareup.wire.shaded.okio.use
 
 /** Sample schema handler which writes to disk generated artifacts. */
 class LogToFileHandler : SchemaHandler() {

@@ -31,7 +31,7 @@ import com.google.protobuf.DescriptorProtos.ServiceDescriptorProto
 import com.google.protobuf.UnknownFieldSet
 import com.squareup.wire.buildSchema
 import kotlin.test.Test
-import okio.Path.Companion.toPath
+import com.squareup.wire.shaded.okio.Path.Companion.toPath
 
 class SchemaEncoderTest {
   @Test fun `encode schema`() {

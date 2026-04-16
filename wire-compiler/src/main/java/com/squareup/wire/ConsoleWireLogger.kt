@@ -16,7 +16,7 @@
 package com.squareup.wire
 
 import com.squareup.wire.schema.ProtoType
-import okio.Path
+import com.squareup.wire.shaded.okio.Path
 
 internal class ConsoleWireLogger : WireLogger {
   var quiet: Boolean = false

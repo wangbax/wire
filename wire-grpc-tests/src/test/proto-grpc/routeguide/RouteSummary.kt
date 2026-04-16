@@ -26,7 +26,7 @@ import kotlin.Long
 import kotlin.Nothing
 import kotlin.String
 import kotlin.Suppress
-import okio.ByteString
+import com.squareup.wire.shaded.okio.ByteString
 
 /**
  * A RouteSummary is received in response to a RecordRoute rpc.

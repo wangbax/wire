@@ -72,8 +72,8 @@ import kotlin.Suppress
 import kotlin.collections.List
 import kotlin.collections.Map
 import kotlin.lazy
-import okio.ByteString
-import okio.ByteString.Companion.decodeBase64
+import com.squareup.wire.shaded.okio.ByteString
+import com.squareup.wire.shaded.okio.ByteString.Companion.decodeBase64
 
 public class AllTypes(
   @field:WireField(

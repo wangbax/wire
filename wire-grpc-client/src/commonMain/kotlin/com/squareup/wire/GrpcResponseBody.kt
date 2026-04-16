@@ -15,7 +15,7 @@
  */
 package com.squareup.wire
 
-import okio.BufferedSource
+import com.squareup.wire.shaded.okio.BufferedSource
 
 expect abstract class GrpcResponseBody {
   abstract fun source(): BufferedSource

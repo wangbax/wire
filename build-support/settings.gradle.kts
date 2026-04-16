@@ -4,6 +4,8 @@ include(":wire-compiler")
 project(":wire-compiler").projectDir = File("../wire-compiler")
 include(":wire-gradle-plugin")
 project(":wire-gradle-plugin").projectDir = File("../wire-gradle-plugin")
+include(":wire-grpc-api")
+project(":wire-grpc-api").projectDir = File("../wire-grpc-api")
 include(":wire-grpc-client")
 project(":wire-grpc-client").projectDir = File("../wire-grpc-client")
 include(":wire-gson-support")
@@ -37,6 +39,9 @@ enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 pluginManagement {
   repositories {
+    if (System.getProperty("useMavenLocal", "false").toBoolean()) {
+      mavenLocal()
+    }
     mavenCentral()
     gradlePluginPortal()
     google()

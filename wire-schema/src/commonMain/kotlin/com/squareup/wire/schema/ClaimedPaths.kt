@@ -15,7 +15,7 @@
  */
 package com.squareup.wire.schema
 
-import okio.Path
+import com.squareup.wire.shaded.okio.Path
 
 /**
  * [ClaimedPaths] tracks generated files' [Path]s. [Schema handlers][SchemaHandler] who generate

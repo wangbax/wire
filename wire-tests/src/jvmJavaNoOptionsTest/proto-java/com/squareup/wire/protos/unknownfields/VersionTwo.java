@@ -19,7 +19,7 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.StringBuilder;
 import java.util.List;
-import okio.ByteString;
+import com.squareup.wire.shaded.okio.ByteString;
 
 public final class VersionTwo extends Message<VersionTwo, VersionTwo.Builder> {
   public static final ProtoAdapter<VersionTwo> ADAPTER = new ProtoAdapter_VersionTwo();

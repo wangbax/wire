@@ -18,7 +18,7 @@ import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.StringBuilder;
-import okio.ByteString;
+import com.squareup.wire.shaded.okio.ByteString;
 
 @Deprecated
 public final class Foo extends Message<Foo, Foo.Builder> {

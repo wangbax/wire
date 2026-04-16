@@ -16,9 +16,9 @@
 package com.squareup.wire.schema
 
 import com.squareup.wire.schema.internal.parser.ProtoParser
-import okio.FileSystem
-import okio.IOException
-import okio.Path
+import com.squareup.wire.shaded.okio.FileSystem
+import com.squareup.wire.shaded.okio.IOException
+import com.squareup.wire.shaded.okio.Path
 
 internal actual fun Path.roots(
   fileSystem: FileSystem,

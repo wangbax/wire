@@ -15,7 +15,7 @@
  */
 package com.squareup.wire
 
-import okio.Buffer
+import com.squareup.wire.shaded.okio.Buffer
 
 /**
  * Adapts a [ProtoReader32] as a [ProtoReader] so that [ProtoAdapter] implementations that don't

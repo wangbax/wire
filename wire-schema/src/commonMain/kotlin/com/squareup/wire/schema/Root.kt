@@ -18,10 +18,10 @@ package com.squareup.wire.schema
 import com.squareup.wire.schema.internal.ProfileFileElement
 import com.squareup.wire.schema.internal.ProfileParser
 import com.squareup.wire.schema.internal.withUnixSlashes
-import okio.FileSystem
-import okio.IOException
-import okio.Path
-import okio.Path.Companion.toPath
+import com.squareup.wire.shaded.okio.FileSystem
+import com.squareup.wire.shaded.okio.IOException
+import com.squareup.wire.shaded.okio.Path
+import com.squareup.wire.shaded.okio.Path.Companion.toPath
 
 internal sealed class Root {
   abstract val base: String?

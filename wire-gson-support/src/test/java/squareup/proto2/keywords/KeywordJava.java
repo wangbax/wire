@@ -22,7 +22,7 @@ import java.lang.String;
 import java.lang.StringBuilder;
 import java.util.List;
 import java.util.Map;
-import okio.ByteString;
+import com.squareup.wire.shaded.okio.ByteString;
 
 public final class KeywordJava extends Message<KeywordJava, KeywordJava.Builder> {
   public static final ProtoAdapter<KeywordJava> ADAPTER = new ProtoAdapter_KeywordJava();

@@ -27,7 +27,7 @@ import kotlin.Long
 import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
-import okio.ByteString
+import com.squareup.wire.shaded.okio.ByteString
 
 public class FreeDrinkPromotion(
   @field:WireField(

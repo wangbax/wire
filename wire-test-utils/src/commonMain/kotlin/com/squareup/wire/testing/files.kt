@@ -17,9 +17,9 @@ package com.squareup.wire.testing
 
 import assertk.Assert
 import assertk.assertions.containsExactlyInAnyOrder
-import okio.FileSystem
-import okio.Path
-import okio.Path.Companion.toPath
+import com.squareup.wire.shaded.okio.FileSystem
+import com.squareup.wire.shaded.okio.Path
+import com.squareup.wire.shaded.okio.Path.Companion.toPath
 
 private val slash = Path.DIRECTORY_SEPARATOR
 private val otherSlash = if (slash == "/") "\\" else "/"

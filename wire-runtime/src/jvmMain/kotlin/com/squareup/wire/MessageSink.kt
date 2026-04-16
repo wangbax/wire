@@ -16,7 +16,7 @@
 package com.squareup.wire
 
 import java.io.Closeable
-import okio.IOException
+import com.squareup.wire.shaded.okio.IOException
 
 actual interface MessageSink<in T : Any> : Closeable {
   @Throws(IOException::class)

@@ -29,8 +29,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.channels.ClosedReceiveChannelException
 import kotlinx.coroutines.channels.SendChannel
-import okio.Timeout
-import okio.withLock
+import com.squareup.wire.shaded.okio.Timeout
+import com.squareup.wire.shaded.okio.withLock
 
 internal class RealGrpcClientStreamingCall<S : Any, R : Any>(
   private val callDelegate: GrpcStreamingCall<S, R>,

@@ -17,7 +17,7 @@ package com.squareup.wire.schema
 
 import com.squareup.wire.ProtoAdapter
 import kotlin.collections.set
-import okio.Path
+import com.squareup.wire.shaded.okio.Path
 
 /**
  * A collection of .proto files that describe a set of messages. A schema is *linked*: each
@@ -98,14 +98,14 @@ class Schema internal constructor(protoFiles: Iterable<ProtoFile>) {
   /**
    * Returns a wire adapter for the message or enum type named [typeName]. The returned type
    * adapter doesn't have model classes to encode and decode from, so instead it uses scalar types
-   * ([String], [ByteString][okio.ByteString], [Integer], etc.), [maps][Map], [lists][List], and
+   * ([String], [ByteString][com.squareup.wire.shaded.okio.ByteString], [Integer], etc.), [maps][Map], [lists][List], and
    * corresponding classes to proto3 types (e.g. [Instant][com.squareup.wire.Instant] for
    * `google.prptobuf.Timestamp`.) It can both encode and decode these objects. Map keys are field
    * names.
    *
    * @param includeUnknown true to include values for unknown tags in the returned model. Map keys
    * for such values is the unknown value's tag name as a string. Unknown values are decoded to
-   * [Long], [Long], [Integer], or [ByteString][okio.ByteString] for
+   * [Long], [Long], [Integer], or [ByteString][com.squareup.wire.shaded.okio.ByteString] for
    * [VARINT][com.squareup.wire.FieldEncoding.VARINT],
    * [FIXED64][com.squareup.wire.FieldEncoding.FIXED64],
    * [FIXED32][com.squareup.wire.FieldEncoding.FIXED32], or

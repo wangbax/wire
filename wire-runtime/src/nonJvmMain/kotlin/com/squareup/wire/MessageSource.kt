@@ -16,7 +16,7 @@
 package com.squareup.wire
 
 import kotlin.Throws
-import okio.IOException
+import com.squareup.wire.shaded.okio.IOException
 
 actual interface MessageSource<out T : Any> {
   @Throws(IOException::class)

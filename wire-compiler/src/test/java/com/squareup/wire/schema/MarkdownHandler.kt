@@ -15,7 +15,7 @@
  */
 package com.squareup.wire.schema
 
-import okio.Path
+import com.squareup.wire.shaded.okio.Path
 
 class MarkdownHandlerFactory : SchemaHandler.Factory {
   override fun create(

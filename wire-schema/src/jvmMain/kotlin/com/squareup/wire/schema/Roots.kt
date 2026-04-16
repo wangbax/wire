@@ -17,11 +17,11 @@ package com.squareup.wire.schema
 
 import com.squareup.wire.schema.internal.parser.ProtoParser
 import com.squareup.wire.schema.internal.readBomAsCharset
-import okio.FileSystem
-import okio.IOException
-import okio.Path
-import okio.Path.Companion.toPath
-import okio.openZip
+import com.squareup.wire.shaded.okio.FileSystem
+import com.squareup.wire.shaded.okio.IOException
+import com.squareup.wire.shaded.okio.Path
+import com.squareup.wire.shaded.okio.Path.Companion.toPath
+import com.squareup.wire.shaded.okio.openZip
 
 internal actual fun Path.roots(
   fileSystem: FileSystem,

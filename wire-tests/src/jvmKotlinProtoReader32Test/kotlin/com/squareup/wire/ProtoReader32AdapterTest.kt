@@ -22,8 +22,8 @@ import com.squareup.wire.protos.kotlin.alltypes.AllTypes
 import com.squareup.wire.protos.kotlin.alltypes.AllTypes.NestedMessage
 import kotlin.test.Test
 import kotlin.test.assertEquals
-import okio.Buffer
-import okio.ByteString
+import com.squareup.wire.shaded.okio.Buffer
+import com.squareup.wire.shaded.okio.ByteString
 
 class ProtoReader32AdapterTest {
   private val bytes = ByteString.of(125.toByte(), 225.toByte())

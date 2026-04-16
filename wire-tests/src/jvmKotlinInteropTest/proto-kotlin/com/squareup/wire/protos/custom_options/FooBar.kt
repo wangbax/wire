@@ -39,7 +39,7 @@ import kotlin.`annotation`.AnnotationTarget
 import kotlin.`annotation`.Retention
 import kotlin.`annotation`.Target
 import kotlin.collections.List
-import okio.ByteString
+import com.squareup.wire.shaded.okio.ByteString
 
 public class FooBar(
   @MyFieldOptionOneOption(17)

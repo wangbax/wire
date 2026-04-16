@@ -27,7 +27,7 @@ import grpc.reflection.v1alpha.ListServiceResponse
 import grpc.reflection.v1alpha.ServerReflectionRequest
 import grpc.reflection.v1alpha.ServerReflectionResponse
 import grpc.reflection.v1alpha.ServiceResponse
-import okio.Path.Companion.toPath
+import com.squareup.wire.shaded.okio.Path.Companion.toPath
 import org.junit.Test
 
 internal class SchemaReflectorTest {

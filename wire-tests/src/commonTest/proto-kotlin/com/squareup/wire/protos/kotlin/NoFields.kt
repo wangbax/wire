@@ -25,7 +25,7 @@ import kotlin.Long
 import kotlin.Nothing
 import kotlin.String
 import kotlin.Suppress
-import okio.ByteString
+import com.squareup.wire.shaded.okio.ByteString
 
 @Deprecated(message = "NoFields is deprecated")
 public class NoFields(

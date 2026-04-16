@@ -28,7 +28,7 @@ import com.squareup.wire.internal.FieldOrOneOfBinding
 import com.squareup.wire.internal.MessageBinding
 import com.squareup.wire.internal.RuntimeMessageAdapter
 import com.squareup.wire.schema.Field.EncodeMode
-import okio.ByteString
+import com.squareup.wire.shaded.okio.ByteString
 
 /**
  * Creates type adapters to read and write protocol buffer data from a schema model. This doesn't

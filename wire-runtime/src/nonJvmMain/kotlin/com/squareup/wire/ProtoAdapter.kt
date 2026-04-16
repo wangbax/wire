@@ -17,9 +17,9 @@ package com.squareup.wire
 
 import com.squareup.wire.internal.JvmStatic
 import kotlin.reflect.KClass
-import okio.BufferedSink
-import okio.BufferedSource
-import okio.ByteString
+import com.squareup.wire.shaded.okio.BufferedSink
+import com.squareup.wire.shaded.okio.BufferedSource
+import com.squareup.wire.shaded.okio.ByteString
 
 actual abstract class ProtoAdapter<E> actual constructor(
   internal actual val fieldEncoding: FieldEncoding,

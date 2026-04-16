@@ -23,9 +23,9 @@ import com.squareup.wire.protos.kotlin.person.Person
 import com.squareup.wire.protos.kotlin.simple.SimpleMessage
 import java.io.ObjectInputStream
 import java.io.ObjectOutputStream
-import okio.Buffer
-import okio.ByteString
-import okio.ByteString.Companion.decodeBase64
+import com.squareup.wire.shaded.okio.Buffer
+import com.squareup.wire.shaded.okio.ByteString
+import com.squareup.wire.shaded.okio.ByteString.Companion.decodeBase64
 import org.junit.Test
 
 class SerializableTest {

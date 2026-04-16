@@ -21,8 +21,8 @@ import assertk.assertThat
 import assertk.assertions.hasMessage
 import com.squareup.wire.testing.add
 import kotlin.test.assertFailsWith
-import okio.Path
-import okio.fakefilesystem.FakeFileSystem
+import com.squareup.wire.shaded.okio.Path
+import com.squareup.wire.shaded.okio.fakefilesystem.FakeFileSystem
 import org.junit.Test
 
 class CycleCheckerTest {

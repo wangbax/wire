@@ -15,7 +15,7 @@
  */
 package com.squareup.wire
 
-import okio.IOException
+import com.squareup.wire.shaded.okio.IOException
 
 class GrpcException(
   val grpcStatus: GrpcStatus,

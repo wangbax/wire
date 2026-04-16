@@ -1,6 +1,17 @@
 Wire gRPC
 =========
 
+Fork note
+---------
+
+In this shaded-Okio fork, `wire-grpc-client` is not part of the currently
+supported client integration because OkHttp's public JVM APIs still expose the
+original `okio.*` types.
+
+The gRPC API types used by code generation are split into `wire-grpc-api`, but
+the OkHttp-backed `wire-grpc-client` runtime itself is still pending further
+adaptation.
+
 The Wire compiler will generate interfaces for your service RPCs defined in your protobuf schema;
 under the condition that the target is set to Kotlin.
 
@@ -224,16 +235,18 @@ Android application and a server.
 Get it
 ------
 
-Use Wire runtime Gradle coordinates:
-```groovy
-implementation("com.squareup.wire:wire-runtime:LATEST_VERSION")
-```
-
-In addition, to use Wire gRPC for clients, use these new Gradle coordinates:
+In this fork, only the protobuf runtime and optional JSON adapters are
+currently published for client-side consumption:
 
 ```groovy
-implementation("com.squareup.wire:wire-grpc-client:LATEST_VERSION")
+implementation("io.github.wangbax:wire-runtime:5.5.1-okio-fork-1")
+// implementation("io.github.wangbax:wire-gson-support:5.5.1-okio-fork-1")
+// implementation("io.github.wangbax:wire-moshi-adapter:5.5.1-okio-fork-1")
 ```
+
+`wire-grpc-client` is not published yet in this fork because the OkHttp-backed
+runtime still needs separate adaptation for the original `okio.*` JVM API
+boundary.
 
 wire-grpc-server
 ----------------

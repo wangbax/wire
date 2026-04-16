@@ -22,7 +22,7 @@ import com.squareup.wire.schema.Field.Label.REQUIRED
 import com.squareup.wire.schema.Location
 import com.squareup.wire.schema.internal.MAX_TAG_VALUE
 import com.squareup.wire.schema.internal.withUnixSlashes
-import okio.Path.Companion.toPath
+import com.squareup.wire.shaded.okio.Path.Companion.toPath
 
 /** Basic parser for `.proto` schema declarations. */
 class ProtoParser internal constructor(

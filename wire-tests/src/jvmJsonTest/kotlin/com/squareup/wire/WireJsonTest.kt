@@ -30,9 +30,9 @@ import com.squareup.wire.proto2.alltypes.AllTypes as AllTypesProto2
 import com.squareup.wire.proto3.alltypes.AllTypes as AllTypesProto3
 import java.io.File
 import java.util.Collections
-import okio.ByteString
-import okio.buffer
-import okio.source
+import com.squareup.wire.shaded.okio.ByteString
+import com.squareup.wire.shaded.okio.buffer
+import com.squareup.wire.shaded.okio.source
 import org.junit.Assert.fail
 import org.junit.Test
 import org.junit.runner.RunWith

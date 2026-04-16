@@ -16,7 +16,7 @@ import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.StringBuilder;
-import okio.ByteString;
+import com.squareup.wire.shaded.okio.ByteString;
 
 public final class CollisionSubject extends Message<CollisionSubject, CollisionSubject.Builder> {
   public static final ProtoAdapter<CollisionSubject> ADAPTER = new ProtoAdapter_CollisionSubject();

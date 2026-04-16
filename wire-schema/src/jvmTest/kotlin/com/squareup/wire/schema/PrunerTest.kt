@@ -33,7 +33,7 @@ import com.squareup.wire.schema.Options.Companion.FIELD_OPTIONS
 import com.squareup.wire.schema.Options.Companion.MESSAGE_OPTIONS
 import kotlin.test.Ignore
 import kotlin.test.Test
-import okio.Path.Companion.toPath
+import com.squareup.wire.shaded.okio.Path.Companion.toPath
 
 class PrunerTest {
   @Test

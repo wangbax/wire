@@ -25,7 +25,7 @@ import kotlin.String
 import kotlin.Suppress
 import kotlin.Unit
 import kotlin.UnsupportedOperationException
-import okio.ByteString
+import com.squareup.wire.shaded.okio.ByteString
 
 public class RedactedRequired private constructor(
   builder: Builder,

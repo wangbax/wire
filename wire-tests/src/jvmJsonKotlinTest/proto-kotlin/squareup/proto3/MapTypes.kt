@@ -27,7 +27,7 @@ import kotlin.Suppress
 import kotlin.Unit
 import kotlin.collections.Map
 import kotlin.lazy
-import okio.ByteString
+import com.squareup.wire.shaded.okio.ByteString
 
 public class MapTypes(
   map_string_string: Map<String, String> = emptyMap(),

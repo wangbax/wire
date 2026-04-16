@@ -17,7 +17,7 @@ import java.lang.Override;
 import java.lang.String;
 import java.util.List;
 import java.util.Map;
-import okio.ByteString;
+import com.squareup.wire.shaded.okio.ByteString;
 
 public final class AllWrappers extends Message<AllWrappers, AllWrappers.Builder> {
   public static final ProtoAdapter<AllWrappers> ADAPTER = ProtoAdapter.newMessageAdapter(AllWrappers.class, "type.googleapis.com/squareup.proto3.AllWrappers", Syntax.PROTO_3);

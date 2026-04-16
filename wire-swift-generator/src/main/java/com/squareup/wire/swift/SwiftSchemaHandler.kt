@@ -23,7 +23,7 @@ import com.squareup.wire.schema.Service
 import com.squareup.wire.schema.Type
 import io.outfoxx.swiftpoet.FileSpec
 import java.io.IOException
-import okio.Path
+import com.squareup.wire.shaded.okio.Path
 
 class SwiftSchemaHandler : SchemaHandler() {
   private lateinit var generator: SwiftGenerator

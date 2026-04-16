@@ -16,7 +16,7 @@ import java.lang.Object;
 import java.lang.Override;
 import java.lang.String;
 import java.lang.StringBuilder;
-import okio.ByteString;
+import com.squareup.wire.shaded.okio.ByteString;
 
 public final class OuterOpaqueType extends Message<OuterOpaqueType, OuterOpaqueType.Builder> {
   public static final ProtoAdapter<OuterOpaqueType> ADAPTER = new ProtoAdapter_OuterOpaqueType();

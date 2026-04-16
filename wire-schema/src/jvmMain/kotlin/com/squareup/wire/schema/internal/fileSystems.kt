@@ -16,10 +16,10 @@
 package com.squareup.wire.schema.internal
 
 import java.nio.charset.Charset
-import okio.BufferedSource
-import okio.ByteString.Companion.decodeHex
+import com.squareup.wire.shaded.okio.BufferedSource
+import com.squareup.wire.shaded.okio.ByteString.Companion.decodeHex
 
-private val UNICODE_BOMS = okio.Options.of(
+private val UNICODE_BOMS = com.squareup.wire.shaded.okio.Options.of(
   "efbbbf".decodeHex(), // UTF-8
   "feff".decodeHex(), // UTF-16BE
   "fffe0000".decodeHex(), // UTF-32LE

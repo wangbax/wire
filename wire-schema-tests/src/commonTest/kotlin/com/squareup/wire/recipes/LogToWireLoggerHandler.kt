@@ -20,7 +20,7 @@ import com.squareup.wire.schema.Field
 import com.squareup.wire.schema.SchemaHandler
 import com.squareup.wire.schema.Service
 import com.squareup.wire.schema.Type
-import okio.Path
+import com.squareup.wire.shaded.okio.Path
 
 /** Sample schema handler which logs handled types and services. */
 class LogToWireLoggerHandler : SchemaHandler() {

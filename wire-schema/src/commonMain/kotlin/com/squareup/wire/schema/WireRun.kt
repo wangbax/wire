@@ -19,8 +19,8 @@ import com.squareup.wire.WireLogger
 import com.squareup.wire.schema.PartitionedSchema.Partition
 import com.squareup.wire.schema.internal.DagChecker
 import com.squareup.wire.schema.internal.TypeMover
-import okio.FileSystem
-import okio.Path.Companion.toPath
+import com.squareup.wire.shaded.okio.FileSystem
+import com.squareup.wire.shaded.okio.Path.Companion.toPath
 
 /**
  * An invocation of the Wire compiler. Each invocation performs the following operations:
@@ -209,7 +209,7 @@ class WireRun(
   /**
    * All qualified named Protobuf types in [opaqueTypes] will be evaluated as being of type `bytes`.
    * On code generation, the fields of such types will be using the platform equivalent of `bytes`,
-   * like [okio.ByteString] for the JVM. Note that scalar types cannot be opaqued.
+   * like [com.squareup.wire.shaded.okio.ByteString] for the JVM. Note that scalar types cannot be opaqued.
    * The opaque step will happen before the tree shaking one.
    */
   val opaqueTypes: List<String> = listOf(),

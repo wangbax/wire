@@ -24,7 +24,7 @@ import com.squareup.wire.schema.SchemaHandler
 import com.squareup.wire.schema.Service
 import com.squareup.wire.schema.Type
 import java.io.IOException
-import okio.Path
+import com.squareup.wire.shaded.okio.Path
 
 class JavaSchemaHandler(
   /** True for emitted types to implement `android.os.Parcelable`. */
@@ -47,9 +47,6 @@ class JavaSchemaHandler(
 
   /** If true, the constructor of all generated types will be non-public. */
   private val buildersOnly: Boolean = false,
-
-  /** Package name used for generated Okio references such as ByteString. */
-  private val okioPackage: String = JavaGenerator.DEFAULT_OKIO_PACKAGE,
 ) : SchemaHandler() {
   private lateinit var javaGenerator: JavaGenerator
 
@@ -63,7 +60,6 @@ class JavaSchemaHandler(
       .withCompact(compact)
       .withOptions(emitDeclaredOptions, emitAppliedOptions)
       .withBuildersOnly(buildersOnly)
-      .withOkioPackage(okioPackage)
 
     context.fileSystem.createDirectories(context.outDirectory)
 

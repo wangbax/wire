@@ -21,8 +21,8 @@ import com.squareup.wire.protos.kotlin.repeated.Thing
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
-import okio.ByteString.Companion.decodeHex
-import okio.ByteString.Companion.toByteString
+import com.squareup.wire.shaded.okio.ByteString.Companion.decodeHex
+import com.squareup.wire.shaded.okio.ByteString.Companion.toByteString
 
 class KotlinRepeatedTest {
   private val adapter = createRuntimeMessageAdapter(

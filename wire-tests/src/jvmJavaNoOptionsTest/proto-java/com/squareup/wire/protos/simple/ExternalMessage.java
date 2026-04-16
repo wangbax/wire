@@ -19,7 +19,7 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.StringBuilder;
 import java.util.List;
-import okio.ByteString;
+import com.squareup.wire.shaded.okio.ByteString;
 
 public final class ExternalMessage extends Message<ExternalMessage, ExternalMessage.Builder> {
   public static final ProtoAdapter<ExternalMessage> ADAPTER = new ProtoAdapter_ExternalMessage();

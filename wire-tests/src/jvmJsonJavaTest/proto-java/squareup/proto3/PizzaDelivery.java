@@ -15,7 +15,7 @@ import java.time.Duration;
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
-import okio.ByteString;
+import com.squareup.wire.shaded.okio.ByteString;
 
 public final class PizzaDelivery extends Message<PizzaDelivery, PizzaDelivery.Builder> {
   public static final ProtoAdapter<PizzaDelivery> ADAPTER = ProtoAdapter.newMessageAdapter(PizzaDelivery.class, "type.googleapis.com/squareup.proto3.PizzaDelivery", Syntax.PROTO_3);

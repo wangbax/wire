@@ -21,7 +21,7 @@ import java.util.concurrent.LinkedBlockingDeque
 import okhttp3.Call
 import okhttp3.Callback
 import okhttp3.Response
-import okio.IOException
+import com.squareup.wire.shaded.okio.IOException
 
 /**
  * This message source uses a [LinkedBlockingDeque] to connect a reading source with a writing

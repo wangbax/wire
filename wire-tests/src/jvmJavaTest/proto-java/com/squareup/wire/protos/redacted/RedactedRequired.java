@@ -17,7 +17,7 @@ import java.lang.Override;
 import java.lang.String;
 import java.lang.StringBuilder;
 import java.lang.UnsupportedOperationException;
-import okio.ByteString;
+import com.squareup.wire.shaded.okio.ByteString;
 
 public final class RedactedRequired extends Message<RedactedRequired, RedactedRequired.Builder> {
   public static final ProtoAdapter<RedactedRequired> ADAPTER = new ProtoAdapter_RedactedRequired();

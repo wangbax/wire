@@ -20,8 +20,8 @@ import com.squareup.wire.ReverseProtoWriterTest.Person
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
-import okio.ByteString.Companion.decodeHex
-import okio.IOException
+import com.squareup.wire.shaded.okio.ByteString.Companion.decodeHex
+import com.squareup.wire.shaded.okio.IOException
 
 class ProtoReader32Test {
   @Test fun packedExposedAsRepeated() {

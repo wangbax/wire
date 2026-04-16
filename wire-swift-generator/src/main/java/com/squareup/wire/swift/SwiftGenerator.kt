@@ -68,7 +68,7 @@ import io.outfoxx.swiftpoet.UINT32
 import io.outfoxx.swiftpoet.UINT64
 import io.outfoxx.swiftpoet.joinToCode
 import io.outfoxx.swiftpoet.parameterizedBy
-import okio.ByteString.Companion.encode
+import com.squareup.wire.shaded.okio.ByteString.Companion.encode
 
 class SwiftGenerator private constructor(
   val schema: Schema,

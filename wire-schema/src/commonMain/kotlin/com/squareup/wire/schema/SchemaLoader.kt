@@ -15,8 +15,8 @@
  */
 package com.squareup.wire.schema
 
-import okio.FileSystem
-import okio.IOException
+import com.squareup.wire.shaded.okio.FileSystem
+import com.squareup.wire.shaded.okio.IOException
 
 /**
  * Load proto files and their transitive dependencies and parse them. Keep track of which files were
@@ -36,7 +36,7 @@ expect class SchemaLoader(fileSystem: FileSystem) : Loader, ProfileLoader {
   /**
    * All qualified named Protobuf types in [opaqueTypes] will be evaluated as being of type `bytes`.
    * On code generation, the fields of such types will be using the platform equivalent of `bytes`,
-   * like [okio.ByteString] for the JVM. Note that scalar types cannot be opaqued.
+   * like [com.squareup.wire.shaded.okio.ByteString] for the JVM. Note that scalar types cannot be opaqued.
    */
   var opaqueTypes: List<ProtoType>
 

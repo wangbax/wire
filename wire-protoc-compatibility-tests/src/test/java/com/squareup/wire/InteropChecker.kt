@@ -24,8 +24,8 @@ import com.google.protobuf.Message
 import com.google.protobuf.util.JsonFormat
 import com.squareup.moshi.JsonAdapter
 import com.squareup.moshi.Moshi
-import okio.ByteString
-import okio.ByteString.Companion.toByteString
+import com.squareup.wire.shaded.okio.ByteString
+import com.squareup.wire.shaded.okio.ByteString.Companion.toByteString
 
 class InteropChecker(
   private val protocMessage: Message,
