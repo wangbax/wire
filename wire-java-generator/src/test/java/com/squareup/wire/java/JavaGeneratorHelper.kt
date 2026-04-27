@@ -49,14 +49,9 @@ internal class JavaGeneratorHelper(private val schema: Schema) {
 
   @Throws(IOException::class)
   @JvmOverloads
-  fun generateJava(
-    typeName: String,
-    profileName: String? = null,
-    okioPackage: String = JavaGenerator.DEFAULT_OKIO_PACKAGE,
-  ): String {
+  fun generateJava(typeName: String, profileName: String? = null): String {
     val javaGenerator = JavaGenerator.get(schema)
       .withProfile(profile(profileName))
-      .withOkioPackage(okioPackage)
     val type = schema.getType(typeName)
     val typeSpec = javaGenerator.generateType(type)
     val packageName = javaGenerator.generatedTypeName(type).packageName()

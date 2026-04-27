@@ -17,6 +17,17 @@ if (project.rootProject.name == "wire") {
   apply(plugin = "com.gradle.plugin-publish")
 }
 
+// The plugin marker uses the plugin id as its Maven coordinates:
+// com.squareup.wire:com.squareup.wire.gradle.plugin. This fork publishes under
+// io.github.wangbax, so Maven Central rejects that marker namespace. Consumers
+// should use io.github.wangbax:wire-gradle-plugin directly in buildscript
+// classpath instead.
+tasks.matching {
+  it.name == "publishWirePluginMarkerMavenPublicationToMavenCentralRepository"
+}.configureEach {
+  enabled = false
+}
+
 gradlePlugin {
   website.set("https://github.com/square/wire")
   vcsUrl.set("https://github.com/square/wire")

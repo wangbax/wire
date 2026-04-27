@@ -35,7 +35,7 @@ the original `okio 3.x` package name at runtime.
 How to Use
 ----------
 
-This fork is currently published as `5.5.1-okio-fork-1`.
+This fork is currently published as `5.5.1-okio-fork-2`.
 
 If your client only uses Wire-generated `Message` types and protobuf
 encoding/decoding, `wire-runtime` is enough.
@@ -50,18 +50,18 @@ buildscript {
     mavenCentral()
   }
   dependencies {
-    classpath("io.github.wangbax:wire-gradle-plugin:5.5.1-okio-fork-1")
+    classpath("io.github.wangbax:wire-gradle-plugin:5.5.1-okio-fork-2")
   }
 }
 
 apply(plugin = "com.squareup.wire")
 
 dependencies {
-  implementation("io.github.wangbax:wire-runtime:5.5.1-okio-fork-1")
+  implementation("io.github.wangbax:wire-runtime:5.5.1-okio-fork-2")
 
   // Optional JSON adapters.
-  // implementation("io.github.wangbax:wire-gson-support:5.5.1-okio-fork-1")
-  // implementation("io.github.wangbax:wire-moshi-adapter:5.5.1-okio-fork-1")
+  // implementation("io.github.wangbax:wire-gson-support:5.5.1-okio-fork-2")
+  // implementation("io.github.wangbax:wire-moshi-adapter:5.5.1-okio-fork-2")
 }
 
 wire {
