@@ -386,14 +386,14 @@ actual abstract class ProtoAdapter<E> actual constructor(
 
     @JvmField actual val DURATION: ProtoAdapter<Duration> = try {
       commonDuration()
-    } catch (_: NoClassDefFoundError) {
+    } catch (_: Throwable) {
       @Suppress("UNCHECKED_CAST")
       UnsupportedTypeProtoAdapter() as ProtoAdapter<Duration>
     }
 
     @JvmField actual val INSTANT: ProtoAdapter<Instant> = try {
       commonInstant()
-    } catch (_: NoClassDefFoundError) {
+    } catch (_: Throwable) {
       @Suppress("UNCHECKED_CAST")
       UnsupportedTypeProtoAdapter() as ProtoAdapter<Instant>
     }

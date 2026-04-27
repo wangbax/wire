@@ -27,8 +27,6 @@ import com.squareup.wire.schema.Target
 import com.squareup.wire.schema.newSchemaHandler
 import javax.inject.Inject
 
-private const val DEFAULT_OKIO_PACKAGE = "okio"
-
 /**
  * Specifies Wire's outputs (expressed as a list of [Target] objects) using Gradle's DSL (expressed
  * as destination directories and configuration options). This includes registering output
@@ -76,9 +74,6 @@ open class JavaOutput @Inject constructor() : WireOutput() {
   /** If true, the constructor of all generated types will be non-public. */
   var buildersOnly: Boolean = false
 
-  /** Package name used for generated Okio references such as ByteString. */
-  var okioPackage: String = DEFAULT_OKIO_PACKAGE
-
   override fun toTarget(outputDirectory: String): JavaTarget {
     return JavaTarget(
       includes = includes ?: listOf("*"),
@@ -91,7 +86,6 @@ open class JavaOutput @Inject constructor() : WireOutput() {
       emitDeclaredOptions = emitDeclaredOptions,
       emitAppliedOptions = emitAppliedOptions,
       buildersOnly = buildersOnly,
-      okioPackage = okioPackage,
     )
   }
 }
@@ -181,9 +175,6 @@ open class KotlinOutput @Inject constructor() : WireOutput() {
    */
   var makeImmutableCopies: Boolean = true
 
-  /** Package name used for generated Okio references such as ByteString. */
-  var okioPackage: String = DEFAULT_OKIO_PACKAGE
-
   override fun toTarget(outputDirectory: String): KotlinTarget {
     if (grpcServerCompatible) {
       throw IllegalArgumentException(
@@ -230,7 +221,6 @@ open class KotlinOutput @Inject constructor() : WireOutput() {
       mutableTypes = mutableTypes,
       explicitStreamingCalls = explicitStreamingCalls,
       makeImmutableCopies = makeImmutableCopies,
-      okioPackage = okioPackage,
     )
   }
 }

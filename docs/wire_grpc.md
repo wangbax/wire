@@ -239,9 +239,9 @@ In this fork, only the protobuf runtime and optional JSON adapters are
 currently published for client-side consumption:
 
 ```groovy
-implementation("io.github.wangbax:wire-runtime:5.5.1-okio-fork-1")
-// implementation("io.github.wangbax:wire-gson-support:5.5.1-okio-fork-1")
-// implementation("io.github.wangbax:wire-moshi-adapter:5.5.1-okio-fork-1")
+implementation("io.github.wangbax:wire-runtime:5.5.1-okio-fork-2")
+// implementation("io.github.wangbax:wire-gson-support:5.5.1-okio-fork-2")
+// implementation("io.github.wangbax:wire-moshi-adapter:5.5.1-okio-fork-2")
 ```
 
 `wire-grpc-client` is not published yet in this fork because the OkHttp-backed
